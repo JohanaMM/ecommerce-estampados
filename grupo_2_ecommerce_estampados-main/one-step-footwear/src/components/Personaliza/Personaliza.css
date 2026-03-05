@@ -1,73 +1,153 @@
-.personaliza-container {
+.personaliza-wrapper {
+  background: #0a0a0a;
+  min-height: 100vh;
+  padding: 100px 20px 40px; /* Espacio para el header */
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 80px;
-  padding: 60px;
-  color: white;
-  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-/* MOCKUP */
-.mockup-wrapper {
+.personaliza-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide la pantalla en dos */
+  max-width: 1200px;
+  width: 100%;
+  gap: 40px;
+  background: #151515;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* SECCIÓN IZQUIERDA: EL VISUALIZADOR */
+.mockup-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.mockup-display {
   position: relative;
-  width: 400px;
+  width: 100%;
+  aspect-ratio: 1/1; /* Mantiene el cuadrado */
+  max-width: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.4s ease;
+  background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); /* Textura sutil */
 }
 
 .mockup-base {
   width: 100%;
-  display: block;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply; /* ESTO HACE QUE SE VEA EL COLOR */
+  pointer-events: none;
 }
 
-/* IMAGEN DEL USUARIO */
-.mockup-design {
+/* IMAGEN QUE SUBE EL USUARIO */
+.design-overlay {
   position: absolute;
-  top: 38%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   max-width: 180px;
   max-height: 180px;
   object-fit: contain;
+  z-index: 10;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
 }
 
-/* CONTROLES */
+/* POSICIONES DEL DISEÑO */
+.design-overlay.frente { top: 45%; left: 50%; transform: translate(-50%, -50%); }
+.design-overlay.atras { top: 45%; left: 50%; transform: translate(-50%, -50%); }
+.design-overlay.pecho-izq { top: 35%; left: 63%; max-width: 70px; }
+.design-overlay.pecho-der { top: 35%; left: 37%; max-width: 70px; }
+
+/* SECCIÓN DERECHA: CONTROLES */
 .controls-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.controls-section h1 {
-  font-size: 32px;
-}
-
-.controls-section input {
   color: white;
 }
 
-.controls-section button {
-  background: #6e0f1a;
+.title { font-size: 32px; font-weight: 800; margin: 0; }
+.user-welcome { color: #25d366; font-size: 14px; margin-top: -10px; }
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+}
+
+/* Input Color Moderno */
+.color-picker-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #222;
+  padding: 10px 20px;
+  border-radius: 12px;
+}
+
+.color-input {
+  -webkit-appearance: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background: none;
+}
+.color-input::-webkit-color-swatch { border-radius: 50%; border: 2px solid #444; }
+
+/* Selects y Textarea */
+.flex-row { display: flex; gap: 10px; }
+select, textarea, .custom-file-upload {
+  background: #222;
+  border: 1px solid #333;
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+textarea { height: 80px; resize: none; }
+
+.btn-add-cart {
+  background: #FF0C0C;
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 16px;
+  padding: 18px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.3s;
+  margin-top: 10px;
 }
 
-.controls-section button:hover {
-  background: #8f1b27;
-}
+.btn-add-cart:hover { background: #d10a0a; transform: scale(1.02); }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .personaliza-container {
-    flex-direction: column;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    padding: 20px;
   }
-
-  .mockup-wrapper {
-    width: 300px;
+  .mockup-display {
+    max-width: 350px;
   }
 }

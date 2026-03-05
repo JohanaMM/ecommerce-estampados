@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom"; // Añadimos useLocation
 import "./login.css";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation(); // <--- Capturamos la ubicación actual
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +37,10 @@ function Login() {
           sessionStorage.setItem("user", JSON.stringify(userData));
         }
 
-        navigate("/perfil");
+        // --- LÓGICA DE REDIRECCIÓN INTELIGENTE ---
+        // Si venimos de Personaliza (o cualquier otra página), location.state.from tendrá esa ruta.
+        const from = location.state?.from || "/perfil";
+        navigate(from);
 
       } else {
         setError(data.message || "Credenciales inválidas");
