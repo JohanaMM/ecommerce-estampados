@@ -1,0 +1,72 @@
+[
+	{
+		"id": 1,
+		"name": "Air Max 90",
+		"size": "US42",
+		"price": 350000,
+		"category": "Runners",
+		"description": " bla bla bla ",
+		"image": "nike-air-max90.jpeg",
+		"stock": "available-stock"
+	},
+	{
+		"id": 2,
+		"name": "Adidas Yeezy",
+		"size": "US39",
+		"price": 420000,
+		"category": "Lifestyle",
+		"description": "Descripcion bla bla",
+		"image": "adidas-yeezy.jpeg",
+		"stock": "available-stock"
+	},
+	{
+		"id": 3,
+		"name": "Adidas Superstar",
+		"size": "US37",
+		"price": 224000,
+		"category": "Tenis",
+		"description": "Descripcion bla bla 2lkjaskd",
+		"image": "adidas-superstar.jpg",
+		"stock": "available-stock"
+	},
+	{
+		"id": 4,
+		"name": "Vans Old Skool",
+		"size": "US38",
+		"price": 304000,
+		"category": "Lifestyle",
+		"description": "Descripcion bla bla 2lkjaskd",
+		"image": "vans-old-skool.jpeg",
+		"stock": "available-stock"
+	},
+	{
+		"id": 5,
+		"name": "Puma RS-X",
+		"size": "US41",
+		"price": 420000,
+		"category": "Runners",
+		"description": "Descripcion bla bla 2lkjaskd",
+		"image": "puma-rsx.jpeg",
+		"stock": "available-stock"
+	},
+	{
+		"id": 6,
+		"name": "Adidas Dragon",
+		"size": "39",
+		"price": "33000",
+		"category": "lifestyle",
+		"description": "123",
+		"image": "1670258439651.jpeg",
+		"stock": "available-stock"
+	},
+	{
+		"id": 7,
+		"name": "Grade Boys 237",
+		"size": "42",
+		"price": "350000",
+		"category": "lifestyle",
+		"description": "123",
+		"image": "1670276343252.jpg",
+		"stock": "unavailable-stock"
+	}
+]

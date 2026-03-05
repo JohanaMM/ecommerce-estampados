@@ -1,0 +1,116 @@
+h1{
+    text-align: center;
+}
+
+main section article{
+    background-color: #F7F7F7;
+    margin: 15px auto;
+    width: 95%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.table-header {
+    display: none;
+}
+
+.adminFuntions{
+    width: 95%;
+    margin: auto;
+}
+
+.create{
+    display: flex;
+    width: 45%;
+    border: none;
+    background-color: #F2D609;
+    text-align:center;
+    border-radius:5px;
+    cursor:pointer;
+    color: var(--gris-oscuro);
+    font-size:15px;
+    padding:10px 20px;
+    text-decoration: none;
+    margin: 8px 5px;
+    justify-content: center;
+}
+
+.create:hover{
+	background: var(--azul);
+    color: var(--gris-oscuro);
+}
+
+.users-list figure {
+    padding-top: 15px;
+}
+
+.users-list figure img {
+    width: 30%;
+    border-radius: 50%;
+}
+
+.users-list-description h4, .users-list-description h5{
+    padding: 3px 0px;
+}
+
+.users-list-actions {
+    padding: 15px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.users-list-actions a{
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+.users-list-actions a i{
+    font-size: 1em;
+}
+
+.users-list-actions button{
+    border: none;
+    background-color: #F7F7F7;
+}
+
+.delete{
+    color: var(--rojo);
+}
+
+.delete:hover{
+    color: var(--rojo-medio);
+}
+
+.edit{
+    color: var(--azul);
+}
+
+.edit:hover{
+    color: var(--azul-medio);
+}
+
+/*------------media queries------------*/
+
+@media(min-width: 426px){
+
+    main section article, .table-header{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+    }
+}
+
+@media(min-width: 769px){
+    .adminFunctions{
+        display: flex;
+        justify-content: right;
+        width: 95%;
+        margin: auto;
+    }
+    
+    .create{
+        width: 20%;
+    }
+}

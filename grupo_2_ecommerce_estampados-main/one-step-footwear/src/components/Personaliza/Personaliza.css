@@ -1,0 +1,73 @@
+.personaliza-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  padding: 60px;
+  color: white;
+  flex-wrap: wrap;
+}
+
+/* MOCKUP */
+.mockup-wrapper {
+  position: relative;
+  width: 400px;
+}
+
+.mockup-base {
+  width: 100%;
+  display: block;
+}
+
+/* IMAGEN DEL USUARIO */
+.mockup-design {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 180px;
+  max-height: 180px;
+  object-fit: contain;
+}
+
+/* CONTROLES */
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.controls-section h1 {
+  font-size: 32px;
+}
+
+.controls-section input {
+  color: white;
+}
+
+.controls-section button {
+  background: #6e0f1a;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.controls-section button:hover {
+  background: #8f1b27;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .personaliza-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .mockup-wrapper {
+    width: 300px;
+  }
+}

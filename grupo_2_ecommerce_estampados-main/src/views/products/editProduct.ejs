@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+    <link rel="stylesheet" href="/css/editar-producto.css">
+</head>
+<body>
+    <%- include('../partials/header') %> 
+    <title>Editar producto | One Step</title>
+    <body>
+        <main>
+            <h1 class="title">Editar producto</h1>
+            <div>
+                <ul id="error-list">
+                    
+                </ul>
+            </div>
+            <p class="form-description"><%= product.name %></p>
+            <form action="./<%= product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <label for="name">Nombre:</label>
+                    <input type="text" name="name" id="name" value="<%=locals.oldData && oldData.name ? oldData.name : product.name %>" placeholder="Nombre del producto" >
+                    <% if (locals.errors && errors.name){ %>
+                        <p class="showErrors"> <%= errors['name'].msg %></p>
+                    <% } %>
+                    <label for="description">Descripción:</label>
+                    <input type="text" name="description" id="description" placeholder="Descripción" value="<%=locals.oldData && oldData.description ? oldData.description : product.description %>" id="descripcion">
+                    <% if (locals.errors && errors.description){ %>
+                        <p class="showErrors"> <%= errors['description'].msg %></p>
+                    <% } %>
+                    <label for="brand">Marca:</label>
+                    <select name="brand" id="brand">
+                        <% brands.forEach(brand => { %>
+                            <% if(brand.id == product.brand_id){ %> 
+                                <option value="<%=brand.id%>" selected><%=brand.name%></option>
+                                <%} else{ %> 
+                                <option value="<%=brand.id%>"><%=brand.name%></option>
+                                <% } %>
+                        <% }) %>
+                    </select>
+                    <label for="genre">Género:</label>
+                    <select name="genre" id="genre">
+                        <% genres.forEach(genre => { %>
+                            <% if(genre.id == product.genre_id){ %> 
+                                <option value="<%=genre.id%>" selected><%=genre.name%></option>
+                                <%} else{ %> 
+                                <option value="<%=genre.id%>"><%=genre.name%></option>
+                                <% } %>
+                        <% }) %>
+                    </select>
+                    <label for="category">Categoría:</label>
+                    <select name="category" id="category" value="<%= product.category_id %>">
+                        <% categories.forEach(category => { %>
+                            <% if(category.id == product.category_id){ %> 
+                                <option value="<%=category.id%>" selected><%=category.name%></option>
+                                <%} else{ %> 
+                                <option value="<%=category.id%>"><%=category.name%></option>
+                                <% } %>
+                        <% }) %>
+                    </select>
+                    <label for="status">Estado:</label>
+                    <select name="status" id="status">
+                        <option value="0" <%= product.is_active == 0 ? 'selected' : null %>>Inactivo</option>
+                        <option value="1" <%= product.is_active == 1 ? 'selected' : null %>>Activo</option>
+                    </select>
+                    <label for="price">Precio:</label>
+                    <input type="number" name="price" placeholder="Precio" value="<%=locals.oldData && oldData.price ? oldData.price : product.price %>%>" id="price">
+                    <% if (locals.errors && errors.price){ %>
+                        <p class="showErrors"> <%= errors['price'].msg %></p>
+                    <% } %>
+                    <label for="productImage">Imagen del producto:</label>
+                    <input type="file" name="productImage" id="productImage">
+               <label for="sizes">Talla(s) y disponibilidad: (* En construcción) </label>
+                <section class="sizes">
+                    <p>Talla</p>
+                    <p>Cant. disponible</p>
+                    <% sizes.forEach(size => { %>
+                        <% let indexStock = stock.findIndex(object => {return object.size_id === size.id}) %>
+                        <% if(indexStock != -1){ %> 
+                            <article class="sizes-table-info">
+                                <input type="checkbox" name="size_<%=size.id%>" id="size_<%=size.id%>" value="<%=size.id%>" checked>
+                                <label for="size_<%=size.id%>"><%=size.size%></label><br>  
+                            </article>
+                            <article class="sizes-table-info">
+                                <input type="number" name="size_<%=size.id%>_quantity" id="size_<%=size.id%>_quantity" value="<%=stock[indexStock].available_quantity%>">
+                            </article>
+                        <%} else{ %> 
+                            <article class="sizes-table-info">
+                                <input type="checkbox" name="size_<%=size.id%>" id="size_<%=size.id%>" value="<%=size.id%>">
+                                <label for="size_<%=size.id%>"><%=size.size%></label><br>  
+                            </article>
+                            <article class="sizes-table-info">
+                                <input type="number" name="size_<%=size.id%>_quantity" id="size_<%=size.id%>_quantity">
+                            </article>
+                        <% } %>
+                    <% }) %>      
+                </section>
+                    <section class="form-btns">
+                        <button type="submit" class="form-btns-btn">Guardar</button>
+                        <a href="../list" class="form-btns-btn">Volver</a>
+                    </section>
+            </form>
+        </main>
+
+        <%- include("../partials/footer")%>
+
+        <script src="/js/productEditError.js"></script>
+
+    </body>
+    
+</body>
+</html>

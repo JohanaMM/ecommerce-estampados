@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+    <link rel="stylesheet" href="/css/list-users-styles.css">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <title>Listar usuarios | One Step</title>
+
+    <main>
+        <h1>Usuarios</h1>
+        <section class="adminFunctions">
+            <a href="../admin/createUser" class="create">Crear usuario</a>
+        </section>
+
+        <section>
+            <article class="table-header">
+                <h2>Avatar</h2>
+                <h2>Datos</h2>
+                <h2>Editar / Eliminar</h2>
+            </article>
+        <% Users.forEach(Users => { %>
+            <article class="users-list">
+                <figure class="users-list-avatar">
+                    <img src="/img/usersAvatars/<%=Users.avatar_img%>" alt="<%=Users.first_name%>">
+                </figure>
+                <section class="users-list-description">
+                    <h4><%= Users.first_name %></h4>
+                    <h4><%= Users.last_name %></h4>
+                    <h5><%= Users.email %></h5>
+                </section>
+                <section class="users-list-actions">
+                    <a href="./edit/<%= Users.id %>" class="edit"><i class="fas fa-user-edit" alt="delete"></i></a>
+                    <form action="./delete/<%= Users.id %>" method="POST" onsubmit="return confirm('¿Está seguro que quiere eliminar el usuario?');">
+                        <button class="delete"><i class="fas fa-user-times"></i></button>
+                    </form>
+                </section>
+            </article>
+            <% }) %>
+        </section>
+
+    </main>
+
+    <%- include("../partials/footer.ejs") %>
+</body>
+</html>

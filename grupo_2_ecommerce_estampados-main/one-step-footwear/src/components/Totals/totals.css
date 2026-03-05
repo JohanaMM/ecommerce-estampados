@@ -1,0 +1,20 @@
+.total-products {
+    margin: 10px auto;
+    width: 95%;
+    background-color: #B2B2B2;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+@media(min-width: 426px){
+    .total-products {
+        margin: 10px
+    }
+    .totals{
+       display: flex;
+       flex-direction: row;
+    }
+}
+
+@media(min-width: 769px){
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+    <link rel="stylesheet" href="/css/register-styles.css">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <title>Registro | One Step</title>
+
+    <main>
+        <h1 class="reg-title">Registro</h1>
+        <p class="reg-description">Regístrate para ordenar tu calzado, ver tus ordenes y ajustar tus datos.</p>
+
+        <div>
+            <ul id="error-list">
+                
+            </ul>
+        </div>
+
+        <form action="/users/register" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" id="name" placeholder="Nombre" value="<%=locals.oldData && oldData.name ? oldData.name : ''%>" required>
+            <% if (locals.errors && errors.name){ %>
+                <p class="showErrors"> <%= errors['name'].msg %></p>
+            <% } %>
+            <input type="text" name="lastName" id="lastName" placeholder="Apellido" value="<%=locals.oldData && oldData.lastName ? oldData.lastName : ''%>" required>
+            <% if (locals.errors && errors.lastName){ %>
+                <p class="showErrors"> <%= errors['lastName'].msg %></p>
+            <% } %>
+            <input type="email" name="email" id="email" placeholder="Correo electrónico" value="<%=locals.oldData && oldData.email ? oldData.email : ''%>" required>
+            <% if (locals.errors && errors.email){ %>
+                <p class="showErrors"> <%= errors['email'].msg %></p>
+            <% } %>
+            <input type="password" name="password" id="password" minlength="8" placeholder="Contraseña" required>
+            <% if (locals.errors && errors.password){ %>
+                <p class="showErrors"> <%= errors['password'].msg %></p>
+            <% } %>
+            <label for="userAvatar">Selecciona tu avatar (Opcional)</label>
+            <input type="file" name="userAvatar" id="userAvatar">
+            <% if (locals.errors && errors.userAvatar){ %>
+                <p class="showErrors"> <%= errors['userAvatar'].msg %></p>
+            <% } %>
+            <input type="submit" value="Registrarme" class="reg-button">
+            <p>*Al registrarte aceptas nuestos <a href="/termsAndConditions">Términos de uso</a></p>
+            <p>Ya tienes cuenta? <a href="/users/login">Inicia sesión</a> </p>
+        </form>
+
+    </main>
+    
+    <%- include("../partials/footer.ejs") %>
+    <script src="/js/regError.js"></script>
+</body>
+</html>

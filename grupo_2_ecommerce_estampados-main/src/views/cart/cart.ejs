@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %> 
+<title>Carrito de compras</title>
+<link rel="stylesheet" href="/css/cart-styles.css">
+</head>
+
+<body>
+    
+    <%- include('../partials/header') %> 
+
+    <main class="main-shop-cart">
+
+        <section class="main-tracking-guide">
+            <h1>Mi carrito de compras</h1>
+            <div class="tracking-guide">
+                <hr>
+                <ul class="traking-status-horizontal">
+                    <li> 
+                        <div class="track-status-icon-default">
+                            <hr>
+                        </div>
+                        <p>Carrito</p>
+                    </li>
+                    <li>
+                        <div class="track-status-icon-other">
+                            <hr>
+                        </div>
+                        <p> Verificar</p>
+                    </li>
+                    <li>
+                        <div class="track-status-icon-other">
+                            <hr>
+                        </div>
+                        <p>Pagar</p>
+
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="shopping-cart"> 
+
+            <div class="shopping-cart-list">
+
+                <% products.forEach(products => { %>
+                    <article class="cart-items">
+                        <figure class="product-image-box">
+                            <img src="../img/<%= products.image %>">
+                        </figure>
+                        <section class="cart-product-description">
+                            <p class="product-name"> <%= products.name%> </p>
+                            <p class="product-aditional-info"> <%= products.size%> </p>
+                            <p class="product-price"> <%= products.price%> </p>
+                        </section>
+                        <section class="quantity-delete">
+                            <div class="counter">
+                                <div class="btn">+</div>
+                                <div class="count">1</div>
+                                <div class="btn">-</div>
+                            </div>
+                            <div class="delete-product">
+                                <button type="button" class="delete-cart-product">Eliminar</button>
+                            </div>
+                        </section>
+                    </article>
+                  <% }) %>
+
+            </div>
+        
+            <section class="shopping-cart-resume">
+                <div class="resume-tittle">
+                    <p>Resumen</p>
+                </div>
+                <div class="values-resume">
+                    <p>Subtotal</p>
+                    <p>$770.000</p>
+                </div>
+                <div class="values-resume">
+                    <p>Total (IVA incluído)</p>
+                    <p>$770.000</p>
+                </div>
+                <div class="buy-btn">
+                    <button type="button" class="buy-cart-product">Comprar</button>
+                </div>
+            </section>
+
+        </section>
+
+    </main>
+
+    <%- include('../partials/footer') %> 
+
+</body>
+</html>

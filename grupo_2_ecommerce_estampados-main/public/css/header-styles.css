@@ -1,0 +1,164 @@
+/*-------Globales---------*/
+
+:root {
+    --azul: #00ABB3;
+    --gris-oscuro: #3C4048;
+    --gris-medio: #B2B2B2;
+    --gris-claro: #F7F7F7;
+    --azul-medio: #155472;
+    --rojo: #E10C0C;
+    --rojo-medio: #8D0505;
+}
+
+*{
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Exo', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*------Header-------*/
+
+header{
+    background-color: var(--gris-claro);
+    margin-bottom: 10px;
+}
+
+header ul li {
+    list-style-type: none;
+    margin-bottom: 5px;
+    padding: 0;
+    display: none;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 15px;
+}
+
+.navbar li a:hover {
+    background-color: var(--gris-claro);
+    color: var(--gris-oscuro);
+    border-radius: 5px;
+}
+
+.logo-login-reg{
+    display: flex;
+    margin: auto;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+}
+
+.logo-login-reg ul li a{
+    color: var(--gris-oscuro);
+}
+
+.logo-login-reg ul li a:hover{
+    background-color: var(--gris-oscuro);
+    color: var(--gris-claro);
+    border-radius: 5px;
+}
+
+.shopping-cart-menu i{
+    color: var(--gris-oscuro);
+    font-size: 20px;
+    padding: 15px;
+}
+
+.shopping-cart-menu:hover {
+    background-color: var(--gris-oscuro);
+    border-radius: 5px;
+}
+
+.shopping-cart-menu i:hover{
+    color: var(--gris-claro);
+}
+
+.logo {
+    margin-left: 0px;
+    width: 100%;
+}
+
+.img{
+   width: 30%; 
+}
+
+.hamburger-menu{
+    margin: auto;
+    font-size: 20px;
+}
+
+.hamburger-menu i{
+    padding: 15px;
+}
+
+.navbar{
+    background-color: var(--gris-oscuro);
+    display: none;
+    height: 50px;
+    text-align: center;
+}
+
+.navbar ul li a {
+    color: white;
+}
+
+.list{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+/*-----------media queries-------------*/
+
+/* Tablets */
+
+@media(min-width: 426px){
+
+
+}
+
+/* Escritorio  */
+
+@media(min-width: 769px){
+
+    /*Header*/
+
+    .hamburger-menu {
+        display: none;
+        margin: 0;
+    }
+
+    .login-register-menu{
+        margin: auto;
+        width: 100%;
+
+    }
+
+    .login-ul{
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        width: 100%;
+    }
+
+    .login-ul li {
+        display: block;
+        margin: 0 20px;
+    }
+
+    header ul li{
+        display: block;
+    }
+
+    .navbar{
+        display: block;
+    }
+
+}

@@ -1,0 +1,16 @@
+.last_user {
+    margin: 10px auto;
+    width: 95%;
+    background-color: #F7F7F7;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+
+
+
+@media(min-width: 426px) {
+    .last_user {
+        width: 400px;
+    }
+}

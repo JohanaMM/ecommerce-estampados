@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <%- include('../partials/header') %> 
+    <title>Módulo Administrador | One Step</title>
+    <body>
+        <main>
+            <h1 class="title">Módulo Administrador</h1>
+            <section class="admin-actions">
+                <a href="../products/createProduct" class="admin-btn">Crear producto</a>
+                <a href="../products/inactiveProducts" class="admin-btn">Ver productos inactivos</a>
+                <a href="../admin/userList" class="admin-btn">Ver y/o administrar usuarios</a>
+            </section>
+
+            <section class="form-btns">
+                <!-- <button type="submit" class="form-btns-btn">Guardar</button> -->
+                <a href="../" class="form-btns-btn">Volver</a>
+            </section>
+        </main>
+
+        <%- include("../partials/footer")%>
+
+    </body>
+    
+</body>
+</html>

@@ -1,0 +1,14 @@
+@media(min-width: 426px) {
+    .title{
+        text-align: left;
+    }
+    .product-img-and-details{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .product-image{
+        width: 50%;
+    }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <%-include("../partials/head") %> 
+<title>Iniciar Sesión | One Step</title>
+<link rel ="stylesheet" href="/css/style-login.css">   
+</head>
+<body>
+  <%-include("../partials/header") %> 
+
+  <main>
+    <h1 class="login-title">Inicia sesión</h1>
+    <figure>
+      <a href="/"><img src="../img/loginUser.png" alt="back_home"></a>
+    </figure>
+    
+    <% if (locals.errors && errors.msg){ %>
+      <p class="showErrors"> <%= errors['msg'] %></p>
+    <% } %>
+
+    <div>
+      <ul id="error-list">
+          
+      </ul>
+    </div>
+    <form action="/users/login" method="POST" >
+      <input type="email" id="email" name="email" placeholder="Correo electrónico" value="<%=locals.oldData && oldData.email ? oldData.email : ''%>" required>
+      <% if (locals.errors && errors.email){ %>
+          <p class="showErrors"> <%= errors['email'].msg %></p>
+      <% } %>
+      <input type="password" id="password" name="password" placeholder="Contraseña" required>
+      <% if (locals.errors && errors.password){ %>
+        <p class="showErrors"> <%= errors['password'].msg %></p>
+    <% } %>
+      <input type="submit" class="login-button" value="Ingresar">
+      <section class="remember-user">
+        <input type="checkbox" id="remindMe" name="remindMe">
+        <label for="remindMe">Recordarme</label>
+      </section>
+      <p>¿No tienes cuenta? <a href="/users/register">Regístrate</a> </p>
+      <p><a href="#">Olvidé mi Contraseña</a></p>
+    </form>  
+  </main>
+
+  <%- include("../partials/footer")%>
+
+  <script src="/js/loginError.js"></script>
+</body>
+</html>

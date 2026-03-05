@@ -1,0 +1,254 @@
+/*-------Body-------*/
+body {
+    background-color: var(--gris-claro);
+}
+
+/* Carrito de compras */
+
+.main-shop-cart {
+    min-height: 90vh;
+}
+
+.main-tracking-guide {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.cart-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.tracking-guide {
+    padding-top: 20px;
+    position: relative;
+}
+
+.tracking-guide hr {
+    width: 66%;
+    border-top: 1px dotted lightgray;
+    position: absolute; 
+    left: 17%; 
+    top: 40px;
+    z-index: -10; 
+}
+
+.traking-status-horizontal {
+    padding-inline-start: 0px;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.traking-status-horizontal li {
+    list-style-type: none;
+}
+
+.traking-status-horizontal p{
+    padding-top: 10px   ;
+}
+
+.track-status-icon-default {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #000;
+    margin: auto;
+}
+
+.track-status-icon-default hr{
+    width: 20%;
+    border: 1px solid #000;
+    position: absolute;
+    z-index: 10;
+}
+
+.track-status-icon-other {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: lightgray;
+    margin: auto;
+}
+
+.shopping-cart {
+    margin: 10px;
+}
+
+.shopping-cart-list img{
+    width: 100%;
+    border-radius: 3px;
+}
+
+.shopping-cart-list{
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    /* box-shadow: 0px 25px 40px var(--azul); */
+    margin: 10px auto;
+}
+
+.buy-cart-product {
+    border: none;
+    text-align:center;
+    background-color: var(--gris-oscuro);
+    border-radius:5px;
+    cursor:pointer;
+    color: white;
+    font-size:15px;
+    padding:14px 37px;
+    text-decoration: none;
+    width: 50%;
+    margin: 8px 0;
+    
+    /* border: none;
+    border-radius: 5px;
+    background-color: var(--azul);
+    padding: 10px;
+    font-weight: bold;
+    width: 50%;
+    margin: 10px;
+    cursor: pointer; */
+}
+
+.buy-cart-product:hover{
+    background:var(--azul);
+    color: var(--gris-oscuro);
+}
+
+.cart-items{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    padding-bottom: 10px;
+}
+
+.product-image-box{
+    width: 80%;
+    text-align: center;
+}
+
+.cart-product-description p{
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.product-name{
+    font-size: 20px;
+    font-weight: 800;
+    color: #202020;
+}
+
+.product-aditional-info{
+    font-size: 15px;
+    font-weight: 600;
+    color: #909090;
+}
+
+.product-price {
+    line-height: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #202020;
+}
+
+.counter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 900;
+    color: #202020;
+    cursor: pointer;
+}
+
+.buy-btn{
+    text-align: center;
+}
+
+.delete-product {
+    text-align: center;
+}
+
+.delete-cart-product {
+    border: none;
+    background-color: transparent;
+    font-size: 12px;
+    color: lightseagreen;
+    cursor: pointer;
+}
+
+.count{
+    font-size: 20px;
+    font-weight: 900;
+    color: #202020;
+    margin: 0px 7px;
+}
+
+.shopping-cart-resume{
+    width: 90%;
+    background-color: white;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.resume-tittle{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.values-resume{
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*-----------media queries-------------*/
+
+/* Tablets */
+
+@media(min-width: 426px){
+
+
+}
+
+/* Escritorio  */
+
+@media(min-width: 769px){
+
+    .main-tracking-guide {
+        width: 60%;
+        margin: auto;
+    }
+
+    .shopping-cart {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .shopping-cart-list {
+        width: 60%;
+        margin: 0px 10px;
+    }
+
+    .shopping-cart-resume {
+        width: 30%;
+        margin: 0px 10px;
+    }  
+}

@@ -1,0 +1,42 @@
+main p, main ul {
+    font-size: 12pt;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 4pt;
+    margin-top: 4pt;
+    line-height: 125%;
+    text-indent: 1em;
+    font-style: normal;
+    text-align: justify;
+}
+
+main h1, main h2, main h3 {
+    text-align: center;
+}
+
+/*----------Contacto---------*/
+
+form{
+    text-align: left;
+    margin-left: 5%;
+}
+
+input, textarea{
+    text-align: center;
+    width: 90%;
+}
+
+/*media queries*/
+
+@media(min-width: 426px){
+    main h2, main h3{
+        text-align: left;
+        margin-left: 5%;
+    }
+}
+
+@media(min-width: 769px){
+    input{
+        width: 50%;
+    }
+}

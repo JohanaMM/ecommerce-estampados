@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+    <link rel="stylesheet" href="/css/terms-politics-styles.css">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <title>About Us | One Step</title>
+    <main>
+        <h1>¿Quienes Somos?</h1>
+        <p>
+            One Step es una comercializadora virtual de zapatos que hace envíos a todo Colombia, y también a toda latinoamérica a un excelente precio.
+            La empresa nace en 2022 y es fundada por 4 estudiantes de programación web que querían hacer un e-commerce y vender algo.
+            Ofrecemos diferentes estilos de calzado para todos los géneros, en distintas tallas y colores. También velamos por un excelente servicio al cliente
+            mediante contacto por diferentes canales, y nos aseguramos de que los pedidos lleguen a tiempo y de manera correcta.
+        </p>
+        <br>
+        <h2>Misión</h2>
+        <p>
+            One Step quiere llegar a cualquier lugar de Colombia y latinoamérica mediante una conexión a internet, sencillos pasos y de forma rápida, ofreciendo
+            un User Experience de calidad, precios competitivos y buena atención al cliente.
+        </p> 
+        <br>
+        <h2>Visión</h2>
+        <p>
+            One Step espera que para 2023, la empresa sea medianamente reconocida en redes sociales, principalmente Instagram y Facebook, y que mediante búsquedas
+            en Google los usuarios puedan encontrarnos al buscar una tienda de calzado, o mediante una búsqueda de una zapatilla específica.
+        </p>
+        <br>
+        <h1 id="contacto">Contácto</h1>
+        <form action="POST">
+            <label>Nombre</label><br>
+            <input type="text" required><br><br>
+
+            <label>Correo electrónico</label><br>
+            <input type="email" required><br><br>
+
+            <label>Teléfono</label><br>
+            <input type="tel"><br><br>
+            <label>Mensaje</label><br>
+            <textarea cols="30" rows="10"></textarea><br>
+            <button>Enviar</button>
+        </form>
+    </main>
+    <%- include("../partials/footer.ejs") %>
+</body>
+</html>

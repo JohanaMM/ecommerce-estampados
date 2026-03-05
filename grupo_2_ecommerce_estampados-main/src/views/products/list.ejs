@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+    <link rel="stylesheet" href="/css/styles-products.css">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <title>Productos | One Step</title>
+    <main>
+        <h1>Productos</h1>
+        <!-- <h3>Filtrar</h3> -->
+        <form action="" method="get" style="display: none">
+            <label for="gender">Por género:</label>
+            <select name="gender">
+                <option value="all" selected>Todos</option>
+                <% genres.forEach(genre => { %>
+                    <option value="<%=genre.name%>"><%=genre.name%></option>
+                  <% }) %>
+            </select><br>
+            <label for="category">Por categoría:</label>
+            <select name="category">
+                <option value="select" selected>Todos</option>
+                <% categories.forEach(category => { %>
+                    <option value="<%=category.name%>"><%=category.name%></option>
+                  <% }) %>
+            </select><br>
+            <label for="brand">Por marca:</label>
+            <select name="brand">
+                <option value="select" selected>Todos</option>
+                <% brands.forEach(brand => { %>
+                    <option value="<%=brand.name%>"><%=brand.name%></option>
+                  <% }) %>
+            </select><br>
+            <label for="size">Por talla:</label>
+            <select name="size">
+                <option value="select" selected>Todos</option>
+                <% sizes.forEach(size => { %>
+                    <option value="<%=size.size%>"><%=size.size%></option>
+                  <% }) %>
+            </select>
+        </form>
+            <section class="product-section-laptop-view">
+            <% products.forEach(product => { %>
+                <article>
+                    <a href="/products/productDetails/<%= product.id %>"><img class="product-images" src="/img/<%=product.img%>" alt="<%=products.name%>"></a>
+                    <summary class="description">
+                        <h3><a href="/products/productDetails/<%= product.id %>"><%= product.Brand.name %> - <%= product.name%></a></h3>
+                        <p>Estilo: <%= product.Category.name %> </p>
+                        <p><strong>$COP <%= product.price %></strong></p>
+                    </summary>
+                </article>
+              <% }) %>
+            </section>
+
+    </main>
+
+    <%- include("../partials/footer.ejs") %>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <title>One Step - Premium footwear</title>
+
+    <section class="video-section">
+            <video src="img/one-step-main.mp4" autoplay loop muted></video>
+    </section>
+
+    <main>
+        <summary>
+            <h1 class="main-message">¡Pide tu calzado al mejor precio!</h1> 
+        </summary>
+
+        <form action="/" class="search-form">
+            <input class="search" type="text" placeholder="¿Qué marca buscas?">
+            <button class="myButton">Buscar</button>
+        </form>
+
+        <section class="products">
+            <article>
+                <a href="/products/list"><img class="images" src="/img/adidas-superstar.jpg" alt="adidas-superstar"></a>
+                <h3><a href="/products/list">Tenis</a></h3>
+            </article>
+            <article>
+                <a href="/products/list"><img class="images" src="/img/nike-air-max90.jpeg" alt="Nike Air Max90"></a>
+                <h3><a href="/products/list">Runners</a></h3>
+            </article>
+            <article>
+                <a href="/products/list"><img class="images" src="/img/nb-grade-boys.jpg" alt="NB Grade Boys"></a>
+                <h3><a href="/products/list">Lifestyle</a></h3>
+            </article>
+        </section>
+
+    </main>
+
+    <%- include("../partials/footer.ejs") %>
+</body>
+</html>

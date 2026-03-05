@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+    <link rel="stylesheet" href="/css/crear-producto.css">
+    <title>Crear Producto | One Step </title>
+</head>
+<body>
+    <%- include('../partials/header') %> 
+    <body>
+        <main>
+            <h1 class="title">Crear producto</h1>
+            <p class="form-description">Registra un nuevo producto.</p>
+            <div>
+                <ul id="error-list">
+                    
+                </ul>
+            </div>
+            <form method="POST" action="../products/createProduct" class="form" enctype="multipart/form-data">
+                <label for="name">Nombre:</label>
+                <input type="text" name="name" id="name" placeholder="Nombre del producto" value="<%=locals.oldData && oldData.name ? oldData.name : ''%>">
+                <% if (locals.errors && errors.name){ %>
+                    <p class="showErrors"> <%= errors['name'].msg %></p>
+                <% } %>
+                <label for="description">Descripción:</label>
+                <input type="text" name="description" id="description" placeholder="Descripción del producto" value="<%=locals.oldData && oldData.description ? oldData.description : ''%>">
+                <% if (locals.errors && errors.description){ %>
+                    <p class="showErrors"> <%= errors['description'].msg %></p>
+                <% } %>
+                <label for="brand">Marca:</label>
+                <select name="brand" id="brand">
+                    <% brands.forEach(brand => { %>
+                        <option value="<%=brand.id%>" <%= locals.oldData && brand.id == oldData.brand ? 'selected' : null %>><%=brand.name%></option>
+                    <% }) %>
+                </select>
+                <label for="genre">Género:</label>
+                <select name="genre" id="genre">
+                    <% genres.forEach(genre => { %>
+                        <option value="<%=genre.id%>" <%= locals.oldData && genre.id == oldData.genre ? 'selected' : null %>><%=genre.name%></option>
+                    <% }) %>
+                </select>
+                <label for="category">Categoría:</label>
+                <select name="category" id="category">
+                    <% categories.forEach(category => { %>
+                        <option value="<%=category.id%>" <%= locals.oldData && category.id == oldData.category ? 'selected' : null %>><%=category.name%></option>
+                    <% }) %>
+                </select>
+                <label for="price">Precio:</label>
+                <input type="number" name="price" placeholder="Precio" id="price" value="<%=locals.oldData && oldData.price ? oldData.price : ''%>">
+                <% if (locals.errors && errors.price){ %>
+                    <p class="showErrors"> <%= errors['price'].msg %></p>
+                <% } %>
+                <label for="productImage">Imagen del producto:</label>
+                <input type="file" name="productImage" id="productImage">
+                <% if (locals.errors && errors.productImage){ %>
+                    <p class="showErrors"> <%= errors['productImage'].msg %></p>
+                <% } %>
+                <label for="sizes">Talla(s) y disponibilidad:</label>
+                <% if (locals.oldData && Object.entries(oldData).filter(([key,value]) => key.startsWith('size') && value != '').length == 0){ %>
+                    <p class="showErrors">Debe seleccionar la(s) talla(s)</p>
+                <% } %>
+                <section class="sizes">
+                    <p>Talla</p>
+                    <p>Cant. disponible</p>
+                    <% sizes.forEach(size => { %>
+                        <article class="sizes-table-info">
+                            <input type="checkbox" name="size_<%=size.id%>" id="size_<%=size.id%>" value="<%=size.id%>" <%= locals.oldData && oldData['size_'+size.id] ? 'checked' : null %>>
+                            <label for="size_<%=size.id%>"><%=size.size%></label><br>
+                            <% if (locals.oldData && oldData['size_'+size.id+'_quantity'] != '' && !oldData['size_'+size.id]){ %>
+                                <p class="showErrors">Seleccione la talla</p>
+                            <% } %>
+                        </article>
+                        <article class="sizes-table-info">
+                            <input type="number" name="size_<%=size.id%>_quantity" id="size_<%=size.id%>_quantity" value="<%= locals.oldData && oldData['size_'+size.id+'_quantity'] ? oldData['size_'+size.id+'_quantity'] : ''%>">
+                            <% if (locals.oldData && oldData['size_'+size.id] && oldData['size_'+size.id+'_quantity'] == ''){ %>
+                                <p class="showErrors">Ingrese la cantidad</p>
+                            <% } %>
+                        </article>
+                    <% }) %>
+                </section> 
+                <section class="form-btns">
+                    <button type="submit" class="form-btns-btn">Guardar</button>
+                    <a href="./list" class="form-btns-btn">Volver</a>
+                </section>
+            </form>
+        </main>
+
+        <%- include('../partials/footer') %> 
+
+        <script src="/js/productError.js"></script>
+    </body>
+    </html>

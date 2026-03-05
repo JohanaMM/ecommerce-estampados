@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+    <link rel="stylesheet" href="/css/create-user-admin.css">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %>
+    <title>Creación de usuario | One Step</title>
+
+    <main>
+        <h1 class="reg-title">Creación de usuario</h1>
+        <p class="reg-description">Crear un usuario desde el administrador</p>
+
+        <form action="/admin/createUser" method="POST" enctype="multipart/form-data">
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" id="name" placeholder="Nombre" required>
+            <label for="name">Apellido:</label>
+            <input type="text" name="lastName" id="lastName" placeholder="Apellido" required>
+            <label for="name">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Correo electrónico" required>
+            <label for="role">Rol:</label>
+            <select name="role" id="role">
+                <% roles.forEach(role => { %>
+                    <option value="<%=role.id%>"><%=role.name%></option>
+                <% }) %>
+            </select>
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" id="password" minlength="5" placeholder="Contraseña" required>
+            <label for="userAvatar">Selecciona el avatar (Opcional)</label>
+            <input type="file" name="userAvatar" id="userAvatar">
+            <input type="submit" value="Crear" class="reg-button">
+        </form>
+
+    </main>
+    
+    <%- include("../partials/footer.ejs") %>
+</body>
+</html>

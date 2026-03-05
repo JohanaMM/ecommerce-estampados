@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <%-include("../partials/head") %> 
+<title>Mi perfil | One Step</title>
+<link rel ="stylesheet" href="/css/profile-styles.css">   
+</head>
+<body>
+  <%-include("../partials/header") %> 
+
+  <main>
+    <h1 class="title">Mi Perfil</h1>
+    <figure>
+      <a href="/"><img src="../img/usersAvatars/<%=User.avatar_img%>" alt="back_home"></a>
+    </figure>
+
+    <h2 class="sectionTitle">Datos de la cuenta</h2>
+    <section class="account-data-section">
+      <h4>Nombre(s):</h4>
+      <h4><%= User.first_name %> </h4>
+      <h4>Apellidos:</h4>
+      <h4><%= User.last_name %></h4>
+      <h4>Email:</h4>
+      <h4><%= User.email %> </h4>
+    </section>
+
+    <section class="form-buttons">
+      <a href="/users/edit">Editar mis datos</button>
+      <a href="/users/logout">Cerrar sesión</a>
+      <form action="./deleteAccount/<%= User.id %>" method="POST" onsubmit="return confirm('Está seguro que quiere eliminar su cuenta?');">
+        <button type="submit" class="delete">Eliminar mi cuenta</button>
+      </form>   
+    </section>
+
+  </main>
+
+  <%- include("../partials/footer")%>
+
+</body>
+</html>
