@@ -13,6 +13,8 @@ import Login from './pages/Login';
 import Register from "./pages/Register";
 
 import { CartProvider } from './context/CartContext';
+// IMPORTAMOS EL WHATSAPP
+import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton';
 
 function App() {
   return (
@@ -36,6 +38,9 @@ function App() {
             <Route path="/register" element={<Register />} />
           </Routes>
         </main>
+
+        {/* LO COLOCAMOS AQUÍ PARA QUE SEA VISIBLE EN TODAS LAS PÁGINAS */}
+        <WhatsAppButton />
 
       </BrowserRouter>
     </CartProvider>
