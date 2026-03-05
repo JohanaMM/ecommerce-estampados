@@ -1,108 +1,162 @@
+:root {
+  --action-height: 42px; /* Altura perfecta para botones táctiles */
+}
+
 .product-card {
+  position: relative;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 16px;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Contenedor de imagen con altura fija para alinear todo */
+.product-img-wrapper {
+  width: 100%;
+  height: 180px;
+  background: #111;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.product-img-wrapper img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.product-content {
+  flex-grow: 1; /* Empuja los controles al final de la card */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  width: 100%;
-  max-width: 320px;
-  min-height: 450px;
-
-  background: #2d2b2b;
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  color: white;
-  transition: all 0.3s ease;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
-.product-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+.product-brand {
+  font-size: 9px;
+  color: #FF0C0C;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
-.product-card h3 {
-  margin: 15px 0 5px 0;
+.product-name {
+  color: #fff;
+  font-size: 15px;
+  margin: 4px 0;
+  font-weight: 400;
+}
+
+.product-price {
   font-size: 18px;
   font-weight: 600;
+  color: #fff;
 }
 
-.product-card p {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 15px;
-  color: #e6e6e6;
-}
-
-.quantity {
+/* --- ESTILOS DE LA FILA DE ACCIÓN --- */
+.product-actions-row {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 10px 0;
-  align-items: center;
-}
-
-.quantity button {
-  background: #6e0f1a;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.quantity button:hover {
-  background: #8f1b27;
-}
-
-.add-btn {
-  background: #6e0f1a;
-  color: white;
-  border: none;
-  padding: 10px;
+  flex-direction: row;
+  align-items: stretch; /* Obliga a que todos los hijos tengan el mismo alto */
+  gap: 8px;
   width: 100%;
-  cursor: pointer;
-  border-radius: 16px;
-  font-weight: bold;
-  font-size: 16px;
-  transition: all 0.3s ease;
+  height: var(--action-height);
 }
 
-.add-btn:hover {
-  background: #8f1b27;
-}
-
-.remove-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #e74c3c;
+.qty-selector-container {
   display: flex;
   align-items: center;
+  background: #111;
+  border-radius: 8px;
+  flex: 0 0 95px; /* Ancho fijo para el control de cantidad */
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.remove-btn:hover {
-  color: #c0392b;
-}
-
-.remove-btn.no-bg {
+.qty-btn {
   background: none;
-  padding: 0;
-  margin-left: 5px;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
 }
 
-@media (max-width: 1024px) {
-  .product-card {
-    max-width: 45vw;
-  }
+.qty-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-@media (max-width: 600px) {
-  .product-card {
-    max-width: 90vw;
-    min-height: 400px;
-  }
+.qty-val {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Botón de Agregar (Más ancho y prominente) */
+.btn-add-main {
+  flex: 1; /* Ocupa todo el espacio restante */
+  background: #FF0C0C;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-add-main:hover {
+  background: #d10a0a;
+}
+
+.btn-add-main:active {
+  transform: scale(0.96);
+}
+
+/* Botón de Quitar (Si ya está en el carro) */
+.btn-remove-icon {
+  width: var(--action-height);
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.product-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #FF0C0C;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 5;
 }

@@ -1,17 +1,19 @@
-.product_div {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 40px 80px;
-  justify-items: center;
+/* Contenedor principal para fondo oscuro coherente con el sitio */
+.list-wrapper {
+  background-color: #191919;
+  min-height: 100vh;
+  padding-bottom: 50px;
 }
 
 .section-title {
   font-size: 42px;
   font-family: 'Poppins', sans-serif;
-  margin: 40px 80px 10px 80px;
+  color: white;
+  margin: 0;
+  padding: 40px 80px 10px 80px;
   letter-spacing: 2px;
   font-weight: 500;
+  text-align: center;
 }
 
 /* Categorías estilo Instagram */
@@ -26,58 +28,84 @@
 
 .category-btn {
   flex: 0 0 auto;
-  padding: 8px 16px;
-  border: none;
+  padding: 8px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  background-color: #444;
-  color: white;
+  background-color: #1f1f1f;
+  color: #b3b3b3;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .category-btn.active {
-  background-color: #6e0f1a;
+  background-color: #FF0C0C; /* Rojo coherente con Login/Contacto */
+  color: white;
+  border-color: #FF0C0C;
+  box-shadow: 0 4px 12px rgba(255, 12, 12, 0.3);
+}
+
+.category-btn:hover:not(.active) {
+  background-color: #333;
   color: white;
 }
 
-.category-btn:hover {
-  background-color: #8f1b27;
+/* --- GRILLA DE PRODUCTOS (3 Columnas Web / 1 Móvil) --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas por defecto */
+  gap: 30px;
+  padding: 40px 80px;
+  justify-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.status-msg, .empty-msg {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
 }
 
 /* --- Responsive --- */
+
+/* Tablets y pantallas medianas (2 columnas) */
 @media (max-width: 1024px) {
-  .product_div {
+  .product-grid {
     grid-template-columns: repeat(2, 1fr);
     padding: 30px 40px;
   }
 
   .section-title {
-    margin: 30px 40px 10px 40px;
+    padding: 30px 40px 10px 40px;
+    font-size: 38px;
   }
 }
 
+/* Celulares (1 columna total) */
 @media (max-width: 600px) {
-  .product_div {
+  .product-grid {
     grid-template-columns: 1fr;
     padding: 20px;
+    gap: 20px;
   }
 
   .section-title {
-    font-size: 36px;
-    margin: 20px;
+    font-size: 32px;
+    padding: 20px;
   }
 
   .category-btn {
-    padding: 6px 12px;
+    padding: 6px 14px;
     font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .category-btn {
-    padding: 5px 10px;
-    font-size: 12px;
+    padding: 5px 12px;
+    font-size: 13px;
   }
 }

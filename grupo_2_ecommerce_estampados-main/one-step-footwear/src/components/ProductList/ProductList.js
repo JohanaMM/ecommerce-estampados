@@ -24,8 +24,6 @@ function ProductList() {
         if (!response.ok) throw new Error(`Error ${response.status}: No se pudo conectar`);
         
         const data = await response.json();
-
-        // Verificamos dónde vienen los productos en tu JSON
         const finalProducts = data.products || data.data || data;
         
         setProducts(Array.isArray(finalProducts) ? finalProducts : []);
@@ -46,10 +44,11 @@ function ProductList() {
     : products.filter(p => p.category === selectedCategory);
 
   return (
-    <>
-      <h1 className="section-title">Productos</h1>
+    <main className="products-section">
+      <h1 className="section-title">Nuestra Colección</h1>
 
-      <div className="categories">
+      {/* Filtros de Categoría */}
+      <nav className="categories-filter">
         {categories.map(cat => (
           <button
             key={cat}
@@ -59,11 +58,13 @@ function ProductList() {
             {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </button>
         ))}
-      </div>
+      </nav>
 
-      {status && <p style={{ textAlign: "center", marginTop: "20px" }}>{status}</p>}
+      {/* Estado de carga */}
+      {status && <div className="status-msg">{status}</div>}
 
-      <div className="product_div">
+      {/* GRILLA DE PRODUCTOS: Aquí ocurre la magia del diseño */}
+      <div className="product-grid">
         {filteredProducts.length > 0 ? (
           filteredProducts.map(product => (
             <ProductCard
@@ -73,10 +74,14 @@ function ProductList() {
             />
           ))
         ) : (
-          !status && <p style={{ textAlign: "center", width: "100%" }}>No se encontraron productos.</p>
+          !status && (
+            <div className="empty-state">
+              <p>No se encontraron productos en esta categoría.</p>
+            </div>
+          )
         )}
       </div>
-    </>
+    </main>
   );
 }
 

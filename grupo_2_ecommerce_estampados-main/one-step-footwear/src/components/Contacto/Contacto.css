@@ -1,0 +1,91 @@
+/* Contenedor principal similar a login-page */
+.contact-page {
+  min-height: calc(100vh - 95px);
+  background-color: #191919;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Card del formulario */
+.contact-card {
+  width: 450px; /* Un poco más ancho para el textarea */
+  background-color: #1f1f1f;
+  padding: 50px 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.contact-title {
+  color: white;
+  font-size: 26px;
+  margin-bottom: 35px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Inputs y Textarea unificados */
+.contact-form input, 
+.contact-form textarea {
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background-color: #141414;
+  color: #d9d9d9;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #FF0C0C;
+}
+
+/* Botón de envío */
+.contact-btn {
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 6px;
+  border: none;
+  background-color: #FF0C0C;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.contact-btn:hover {
+  background-color: #c40808;
+  transform: translateY(-2px);
+}
+
+.contact-btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* Mensajes de estado */
+.status-msg {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #b3b3b3;
+}

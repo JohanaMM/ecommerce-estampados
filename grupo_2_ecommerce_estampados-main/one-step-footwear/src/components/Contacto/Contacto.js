@@ -1,7 +1,8 @@
 import { useState } from "react";
+import "./Contacto.css"; // Asegúrate de que el archivo se llame exactamente así
 
 function Contacto() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
@@ -23,7 +24,7 @@ function Contacto() {
 
       if (data.success) {
         setStatus("Mensaje enviado correctamente 🎉");
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", email: "", phone: "", message: "" });
       } else {
         setStatus("Error enviando el mensaje ❌");
       }
@@ -34,18 +35,53 @@ function Contacto() {
   };
 
   return (
-    <div style={{ padding: "50px" }}>
-      <h2>Contacto</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Tu nombre" value={form.name} onChange={handleChange} required />
-        <br /><br />
-        <input type="email" name="email" placeholder="Tu email" value={form.email} onChange={handleChange} required />
-        <br /><br />
-        <textarea name="message" placeholder="Escribe tu mensaje" value={form.message} onChange={handleChange} required />
-        <br /><br />
-        <button type="submit">Enviar mensaje</button>
-      </form>
-      <p>{status}</p>
+    <div className="contact-page"> {/* <-- CAMBIADO: Usamos className */}
+      <div className="contact-card"> {/* <-- AGREGADO: La tarjeta oscura */}
+        <h2 className="contact-title">Contacto</h2> {/* <-- CAMBIADO: Estilo título */}
+        
+        <form className="contact-form" onSubmit={handleSubmit}> {/* <-- CAMBIADO: Clase formulario */}
+          <input 
+            type="text" 
+            name="name" 
+            placeholder="Tu nombre" 
+            value={form.name} 
+            onChange={handleChange} 
+            required 
+          />
+          
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Tu email" 
+            value={form.email} 
+            onChange={handleChange} 
+            required 
+          />
+          
+          <input 
+            type="tel" 
+            name="phone" 
+            placeholder="Tu celular / Whatsapp" 
+            value={form.phone} 
+            onChange={handleChange} 
+            required 
+          />
+
+          <textarea 
+            name="message" 
+            placeholder="Escribe tu mensaje" 
+            value={form.message} 
+            onChange={handleChange} 
+            required 
+          />
+
+          <button type="submit" className="contact-btn">
+            Enviar mensaje
+          </button>
+        </form>
+
+        {status && <p className="status-msg">{status}</p>}
+      </div>
     </div>
   );
 }

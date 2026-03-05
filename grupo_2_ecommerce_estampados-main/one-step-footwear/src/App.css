@@ -1,18 +1,39 @@
 /* RESET GLOBAL */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* BODY */
-body{
-  background-color:#191919;
-  color:#d9d9d9;
+body {
+  background-color: #191919;
+  color: #d9d9d9;
+  /* El padding-top debe ser igual o un poco mayor a la altura de tu header */
+  padding-top: 90px; 
 }
 
 /* CONTENIDO GENERAL */
-main{
-  padding:40px;
+main {
+  padding: 40px;
+  min-height: calc(100vh - 90px); /* Esto asegura que el contenido ocupe el resto de la pantalla */
+}
+
+/* Scrollbar personalizada para que combine con el modo oscuro (Opcional pero recomendado) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #191919;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF0C0C;
 }
