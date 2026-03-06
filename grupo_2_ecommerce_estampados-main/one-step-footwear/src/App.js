@@ -1,34 +1,31 @@
-import Header from './components/Header/Header'
-import Home from './pages/Home'
-import ProductList from './components/ProductList/ProductList'
-import ProductDetails from './components/ProductDetails/ProductDetails'
-import Error404 from './pages/Error404'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import './App.css'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+import Home from './pages/Home';
+import ProductList from './components/ProductList/ProductList';
+import ProductDetails from './components/ProductDetails/ProductDetails';
+import Error404 from './pages/Error404';
 import Personaliza from './components/Personaliza/Personaliza';
 import Contacto from './components/Contacto/Contacto';
 import Carrito from './components/Carrito/Carrito';
 import Perfil from './components/Perfil/Perfil';
 import Login from './pages/Login';
 import Register from "./pages/Register";
-
 import { CartProvider } from './context/CartContext';
-// IMPORTAMOS EL WHATSAPP
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton';
+import './App.css';
 
 function App() {
   return (
     <CartProvider>
       <BrowserRouter>
-
         <Header />
-
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home/>} />
-            <Route path="product-list" element={<ProductList/>} />
-            <Route path="product-details/:id" element={<ProductDetails/>} />
-            <Route path="*" element={<Error404/>} />
+            <Route path="/product-list" element={<ProductList/>} />
+            {/* RUTA CORREGIDA CON / AL INICIO */}
+            <Route path="/product-details/:id" element={<ProductDetails/>} />
             <Route path="/products/:category" element={<ProductList />} />
             <Route path="/personaliza" element={<Personaliza />} />
             <Route path="/contacto" element={<Contacto />} />
@@ -36,12 +33,10 @@ function App() {
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Error404/>} />
           </Routes>
         </main>
-
-        {/* LO COLOCAMOS AQUÍ PARA QUE SEA VISIBLE EN TODAS LAS PÁGINAS */}
         <WhatsAppButton />
-
       </BrowserRouter>
     </CartProvider>
   );

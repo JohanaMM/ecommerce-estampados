@@ -1,51 +1,90 @@
-import React from "react";
-import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
-import './ProductDetails.css'
-
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
+import { FaShoppingCart, FaPlus, FaMinus, FaArrowLeft } from 'react-icons/fa';
+import './ProductDetails.css';
 
 function ProductDetails() {
+    const [productDetail, setProductDetail] = useState(null);
+    const [selectedSize, setSelectedSize] = useState("M");
+    const [selectedColor, setSelectedColor] = useState("Blanco");
+    const [quantity, setQuantity] = useState(1);
     
-
-    const [productDetail, setProductDetail] = useState([]);
-    const params = useParams();
-
-    useEffect(function(){
-        console.log('%cse montó el componente productDetail en productDetails', 'color: green');
-        
-        fetch(`http://localhost:3000/api/products/${params.id}`)
-        .then(response => response.json())
-        .then(data => {
-            
-            
-            setProductDetail(data)
-        })
-        .catch(error => console.log(error))
-    }, [])
+    const { id } = useParams(); 
+    const navigate = useNavigate();
+    const { addToCart } = useContext(CartContext);
 
     useEffect(() => {
-        console.log('%cse actualizó el componente productDetail en productDetails', 'color: yellow');
-    }, [productDetail])
+        fetch(`http://localhost:3000/api/products/${id}`)
+            .then(response => response.json())
+            .then(data => setProductDetail(data))
+            .catch(error => console.log(error));
+    }, [id]);
 
-    useEffect(() => {
-        return() => console.log('%cse desmontó el componente productDetail en productDetails', 'color: red')
-    },[])
+    const handleQuantity = (type) => {
+        if (type === "plus") setQuantity(prev => prev + 1);
+        else if (type === "minus" && quantity > 1) setQuantity(prev => prev - 1);
+    };
 
-    console.log("checking on what is brought 2", productDetail.description)
-    return(
-            <section className="product-detail-container">
-                { productDetail === '' && <p>Cargando...</p> }
-                <h1 className="title">{productDetail.Brand} {productDetail.name}</h1>
-                <div className="product-img-and-details">
-                    <img className="product-image" src={`${productDetail.img}`} alt="product"/>
-                    <div>
-                        <p><em>{productDetail.description}</em></p>
-                        <p>Precio: ${productDetail.price}</p>
-                        <button><a href={`http://localhost:3000/products/productDetails/${params.id}`}>Ir a la tienda</a></button>  
+    if (!productDetail) return <p className="loading">Cargando detalles...</p>;
+
+    return (
+        <section className="product-detail-container">
+            {/* BOTÓN VOLVER ESTILIZADO */}
+            <div className="top-navigation">
+                <button className="back-btn-styled" onClick={() => navigate(-1)}>
+                    <FaArrowLeft /> Volver a la Tienda
+                </button>
+            </div>
+
+            <div className="product-img-and-details">
+                <div className="image-box">
+                    <img className="product-image" src={productDetail.img} alt={productDetail.name} />
+                </div>
+
+                <div className="info-box">
+                    <h1 className="main-title">{productDetail.Brand} {productDetail.name}</h1>
+                    <p className="description"><em>{productDetail.description}</em></p>
+                    <p className="price-tag">${productDetail.price}</p>
+
+                    <div className="selectors">
+                        <div className="selector-group">
+                            <label>Talle:</label>
+                            <div className="options">
+                                {["S", "M", "L", "XL"].map(size => (
+                                    <button 
+                                        key={size} 
+                                        className={selectedSize === size ? "active" : ""} 
+                                        onClick={() => setSelectedSize(size)}
+                                    >
+                                        {size}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="selector-group">
+                            <label>Cantidad:</label>
+                            <div className="quantity-control">
+                                <button onClick={() => handleQuantity("minus")}><FaMinus /></button>
+                                <span>{quantity}</span>
+                                <button onClick={() => handleQuantity("plus")}><FaPlus /></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="button-actions">
+                        <button className="add-to-cart-btn" onClick={() => {
+                            addToCart({...productDetail, size: selectedSize, color: selectedColor, quantity});
+                            alert("Agregado!");
+                        }}>
+                            <FaShoppingCart /> AGREGAR AL CARRITO
+                        </button>
                     </div>
                 </div>
-            </section>
-    )
+            </div>
+        </section>
+    );
 }
 
 export default ProductDetails;

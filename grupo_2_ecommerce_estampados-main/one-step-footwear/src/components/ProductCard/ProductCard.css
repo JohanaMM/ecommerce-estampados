@@ -1,162 +1,105 @@
-:root {
-  --action-height: 42px; /* Altura perfecta para botones táctiles */
-}
-
 .product-card {
-  position: relative;
   background: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 14px;
-  padding: 16px;
-  width: 100%;
-  max-width: 300px;
+  border-radius: 12px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
-  box-sizing: border-box;
+  gap: 12px;
+  transition: transform 0.2s ease;
 }
 
-/* Contenedor de imagen con altura fija para alinear todo */
 .product-img-wrapper {
   width: 100%;
-  height: 180px;
+  height: 160px;
   background: #111;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
 }
 
 .product-img-wrapper img {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 85%;
+  max-height: 85%;
   object-fit: contain;
 }
 
-.product-content {
-  flex-grow: 1; /* Empuja los controles al final de la card */
+.product-info-body {
+  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-  margin-bottom: 15px;
+  gap: 4px;
 }
 
-.product-brand {
-  font-size: 9px;
-  color: #FF0C0C;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
+.product-brand { font-size: 10px; color: #FF0C0C; font-weight: 700; text-transform: uppercase; }
+.product-name { color: #fff; font-size: 15px; font-weight: 400; margin: 0; }
+.product-price { color: #fff; font-size: 18px; font-weight: 700; margin-top: 4px; }
 
-.product-name {
-  color: #fff;
-  font-size: 15px;
-  margin: 4px 0;
-  font-weight: 400;
-}
-
-.product-price {
-  font-size: 18px;
-  font-weight: 600;
-  color: #fff;
-}
-
-/* --- ESTILOS DE LA FILA DE ACCIÓN --- */
-.product-actions-row {
+/* --- BARRA DE ACCIONES (CANTIDAD + COMPRAR) --- */
+.product-actions-bar {
   display: flex;
-  flex-direction: row;
-  align-items: stretch; /* Obliga a que todos los hijos tengan el mismo alto */
+  align-items: center;
   gap: 8px;
-  width: 100%;
-  height: var(--action-height);
+  margin-top: auto; /* Empuja todo al fondo */
 }
 
-.qty-selector-container {
+/* Selector - 1 + */
+.qty-selector {
   display: flex;
   align-items: center;
   background: #111;
-  border-radius: 8px;
-  flex: 0 0 95px; /* Ancho fijo para el control de cantidad */
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  border-radius: 6px;
+  height: 38px;
+  flex: 0 0 90px; /* Ancho fijo para que no baile */
 }
 
 .qty-btn {
   background: none;
   border: none;
-  color: #777;
-  cursor: pointer;
+  color: #fff;
   flex: 1;
   height: 100%;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  transition: background 0.2s;
 }
 
-.qty-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.05);
-}
+.qty-btn:hover { background: rgba(255,255,255,0.05); }
 
-.qty-val {
+.qty-number {
   color: #fff;
-  font-size: 14px;
   font-weight: 700;
-  min-width: 20px;
+  font-size: 14px;
+  width: 24px;
   text-align: center;
 }
 
-/* Botón de Agregar (Más ancho y prominente) */
-.btn-add-main {
-  flex: 1; /* Ocupa todo el espacio restante */
+/* Botón Comprar */
+.btn-buy {
+  flex: 1;
+  height: 38px;
   background: #FF0C0C;
-  color: #fff;
+  color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-
-.btn-add-main:hover {
-  background: #d10a0a;
-}
-
-.btn-add-main:active {
-  transform: scale(0.96);
-}
-
-/* Botón de Quitar (Si ya está en el carro) */
-.btn-remove-icon {
-  width: var(--action-height);
-  background: rgba(231, 76, 60, 0.1);
-  color: #e74c3c;
-  border: 1px solid rgba(231, 76, 60, 0.2);
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 11px;
   cursor: pointer;
-  flex-shrink: 0;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
 }
 
-.product-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: #FF0C0C;
-  color: #fff;
-  font-size: 8px;
-  font-weight: 800;
-  padding: 4px 8px;
-  border-radius: 4px;
-  z-index: 5;
+.btn-buy:hover { opacity: 0.9; }
+
+.product-link-wrapper {
+  text-decoration: none;
+  color: inherit;
 }

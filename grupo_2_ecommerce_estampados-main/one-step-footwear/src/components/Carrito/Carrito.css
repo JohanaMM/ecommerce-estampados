@@ -1,72 +1,65 @@
 .cart-page {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 40px 20px;
+  color: #fff;
 }
 
-.cart-page h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.cart-items {
+.cart-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
+  align-items: baseline;
+  gap: 15px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
 }
 
-.cart-item {
+.cart-container {
+  display: grid;
+  grid-template-columns: 1fr 300px; /* Lista a la izquierda, resumen a la derecha */
+  gap: 30px;
+  align-items: start;
+}
+
+/* Para pantallas chicas, uno debajo del otro */
+@media (max-width: 850px) {
+  .cart-container { grid-template-columns: 1fr; }
+}
+
+.cart-items-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 200px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  padding: 1rem;
-  transition: transform 0.2s;
 }
 
-.cart-item:hover {
-  transform: translateY(-5px);
+.cart-summary {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #333;
 }
 
-.cart-item img {
-  width: 100%;
-  height: 150px;
-  object-fit: contain;
-  margin-bottom: 1rem;
-}
-
-.cart-item h3 {
-  font-size: 1rem;
-  margin: 0.5rem 0;
-  text-align: center;
-}
-
-.cart-item p {
-  margin: 0.25rem 0;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-.cart-item .quantity-controls {
+.summary-row {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-size: 1.2rem;
+  border-top: 1px solid #333;
+  padding-top: 20px;
 }
 
-.cart-item button {
-  padding: 0.3rem 0.6rem;
-  border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
+.summary-total {
+  font-weight: 800;
+  color: #FF0C0C;
+}
+
+.btn-checkout {
+  width: 100%;
+  padding: 15px;
+  background: #FF0C0C;
   color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 800;
   cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.cart-item button:hover {
-  background-color: #45a049;
+  text-transform: uppercase;
 }
