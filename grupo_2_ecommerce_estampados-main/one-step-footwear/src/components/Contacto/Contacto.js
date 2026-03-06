@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./Contacto.css"; // Asegúrate de que el archivo se llame exactamente así
+import { API_CONTACT } from "../../config";
+import "./Contacto.css";
 
 function Contacto() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -14,7 +15,7 @@ function Contacto() {
     setStatus("Enviando... ⏳");
 
     try {
-      const response = await fetch("http://localhost:3000/api/contact", {
+      const response = await fetch(API_CONTACT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)

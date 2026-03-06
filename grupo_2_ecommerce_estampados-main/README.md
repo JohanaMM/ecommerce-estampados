@@ -2,6 +2,15 @@
 
 _One Step Premium Footwear_ es una comercializadora virtual de zapatos que hace envíos a todo Colombia, y también a toda latinoamérica a un excelente precio. La empresa nace en 2022 y es fundada por 4 estudiantes de programación web que querían hacer un e-commerce y vender algo. Ofrecemos diferentes estilos de calzado para todos los géneros, en distintas tallas y colores. También velamos por un excelente servicio al cliente mediante contacto por diferentes canales, y nos aseguramos de que los pedidos lleguen a tiempo y de manera correcta.
 
+## Configuración (variables de entorno)
+
+En la raíz del proyecto, copia `.env.example` a `.env` y completa los valores:
+
+- **Backend:** `PORT`, `SESSION_SECRET`, `DB_*`, `API_URL`, `MERCADOPAGO_ACCESS_TOKEN`, `FRONTEND_URL`, `EMAIL_USER`, `EMAIL_PASS`, etc. Ver `.env.example` para la lista completa.
+- **Frontend (carpeta `one-step-footwear`):** opcionalmente `REACT_APP_API_URL` (por defecto `http://localhost:3000`) y `REACT_APP_MERCADOPAGO_DOMAIN` (por defecto `com.co`).
+
+No subas el archivo `.env` al repositorio.
+
 
 ## Los integrantes del grupo 2 somos:
 

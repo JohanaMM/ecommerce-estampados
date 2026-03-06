@@ -38,10 +38,10 @@ module.exports = (sequelize, dataTypes) => {
     const Stock = sequelize.define(alias, columns, config);
     Stock.associate = function(models){
         Stock.belongsTo(models.Product, {
-            foreingKey: "product_id"
+            foreignKey: "product_id"
         }),
         Stock.belongsTo(models.Size, {
-            foreingKey: "size_id"
+            foreignKey: "size_id"
         })
     }
     return Stock;

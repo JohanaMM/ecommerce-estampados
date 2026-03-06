@@ -1,56 +1,38 @@
-import React from "react";
-import './LastUser.css'
-import { useState, useEffect } from 'react';
-
+import React, { useState, useEffect } from "react";
+import { API_USERS } from "../../config";
+import "./LastUser.css";
 
 function LastUser() {
-
-
-  const [lastUser, setLastUser] = useState([]);
-  
-  useEffect(function(){
-    console.log('%cse montó el componente LastUser en LastUser', 'color: green');
-    fetch('http://localhost:3000/api/users')
-    .then(response => response.json())
-    .then(data => {
-
-
-      let usersArray = data.users
-      let mostRecentDateU = new Date(Math.max.apply(null, usersArray.map( element => {
-        return new Date(element.created_date);
-      })));
-
-
-      let mostRecentUser = usersArray.filter( element => {
-        let d = new Date( element.created_date );
-        return d.getTime() === mostRecentDateU.getTime();
-     })[0];
-
-      
-      setLastUser(mostRecentUser)
-
-
-    })
-    .catch(error => console.log(error))
-  }, [])
+  const [lastUser, setLastUser] = useState(null);
 
   useEffect(() => {
-    console.log('%cse actualizó el componente LastUser en LastUser', 'color: yellow');
-  }, [lastUser])
+    fetch(API_USERS)
+      .then((res) => res.json())
+      .then((data) => {
+        const usersArray = data.users || [];
+        if (usersArray.length === 0) return;
+        const mostRecentDate = new Date(
+          Math.max(...usersArray.map((u) => new Date(u.created_date).getTime()))
+        );
+        const mostRecent = usersArray.find(
+          (u) => new Date(u.created_date).getTime() === mostRecentDate.getTime()
+        );
+        setLastUser(mostRecent);
 
-  useEffect(() => {
-    return() => console.log('%cse desmontó el componente LastUser en LastUser', 'color: red')
-  },[])
-     
 
-	return(
-        <>
-            <div className="last_user">
-                { LastUser === '' && <p>Cargando...</p> }
-                <p>Ultimo usuario registrado: {lastUser.first_name} {lastUser.last_name}.</p>
-            </div>
-        </>
-	);
+      })
+      .catch(() => setLastUser(null));
+  }, []);
+
+  return (
+    <div className="last_user">
+      {!lastUser ? (
+        <p>Cargando...</p>
+      ) : (
+        <p>Último usuario registrado: {lastUser.first_name} {lastUser.last_name}.</p>
+      )}
+    </div>
+  );
 }
 
 export default LastUser;

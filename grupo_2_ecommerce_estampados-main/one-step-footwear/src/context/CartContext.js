@@ -7,33 +7,40 @@ export const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  // Función para agregar productos al carrito
+  // Misma línea = mismo producto + misma talla + mismo color
   const addToCart = (item) => {
     setCart(prevCart => {
-      const existing = prevCart.find(p => p.id === item.id);
+      const existing = prevCart.find(
+        p => p.id === item.id && p.size === item.size && p.color === item.color
+      );
       if (existing) {
         return prevCart.map(p =>
-          p.id === item.id
+          p.lineId === existing.lineId
             ? { ...p, quantity: p.quantity + item.quantity }
             : p
         );
-      } else {
-        return [...prevCart, item];
       }
+      const lineId = `line-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      return [...prevCart, { ...item, lineId }];
     });
   };
 
-  // ✅ Función para eliminar un producto del carrito
-  const removeFromCart = (id) => {
-    setCart(prevCart => prevCart.filter(item => item.id !== id));
+  const removeFromCart = (lineIdOrId) => {
+    setCart(prevCart =>
+      prevCart.filter(
+        item => (item.lineId != null ? item.lineId !== lineIdOrId : item.id !== lineIdOrId)
+      )
+    );
   };
 
-  // ✅ Función para actualizar cantidad directamente desde el carrito
-  const updateCart = (id, newQuantity) => {
+  const updateCart = (lineIdOrId, newQuantity) => {
     setCart(prevCart =>
-      prevCart.map(item =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
+      prevCart.map(item => {
+        const match = item.lineId != null
+          ? item.lineId === lineIdOrId
+          : item.id === lineIdOrId;
+        return match ? { ...item, quantity: newQuantity } : item;
+      })
     );
   };
 

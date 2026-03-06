@@ -13,6 +13,7 @@ const mainRouter = require("./routers/mainRouter");
 const contactRouter = require("./routers/contactRouter");
 const usersApiRouter = require("./routers/API/usersApiRouter");
 const productsApiRouter = require("./routers/API/productsApiRouter");
+const paymentsApiRouter = require("./routers/API/paymentsApiRouter");
 
 // Middlewares
 const remindMeCookie = require("./middlewares/remindMeCookie");
@@ -22,24 +23,20 @@ const PORT = process.env.PORT || 3000;
 const publicPath = path.resolve(__dirname, "../public");
 
 // ==========================
-// CONFIGURACIÓN DE CORS (SOLUCIÓN DEFINITIVA)
+// CORS – debe ser lo primero
 // ==========================
-app.use(cors({
-  origin: function (origin, callback) {
-    // Permite peticiones sin origen (como Postman) o desde localhost/127.0.0.1
-    if (!origin || origin.includes("localhost") || origin.includes("127.0.0.1")) {
-      callback(null, true);
-    } else {
-      callback(new Error('No permitido por CORS'));
-    }
+const corsOptions = {
+  origin: (origin, callback) => {
+    const ok = !origin || /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+    callback(ok ? null : new Error("CORS no permitido"), ok ? origin || true : false);
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "Accept"]
-}));
-
-// Responder a peticiones preflight (obligatorio para navegadores modernos)
-app.options('*', cors());
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // ==========================
 // OTROS MIDDLEWARES
@@ -77,6 +74,7 @@ app.set("view engine", "ejs");
 app.use("/", mainRouter);
 app.use("/api/users", usersApiRouter);
 app.use("/api/products", productsApiRouter);
+app.use("/api/payments", paymentsApiRouter);
 app.use(contactRouter);
 
 // ==========================

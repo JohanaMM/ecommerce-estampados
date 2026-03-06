@@ -7,16 +7,22 @@
   flex-direction: column;
   gap: 12px;
   transition: transform 0.2s ease;
+  width: 100%;
+  min-width: 0;
+  min-height: 320px;
+  box-sizing: border-box;
 }
 
 .product-img-wrapper {
   width: 100%;
   height: 160px;
+  min-height: 160px;
   background: #111;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .product-img-wrapper img {
@@ -30,10 +36,22 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-height: 0;
+  flex-shrink: 0;
 }
 
 .product-brand { font-size: 10px; color: #FF0C0C; font-weight: 700; text-transform: uppercase; }
-.product-name { color: #fff; font-size: 15px; font-weight: 400; margin: 0; }
+.product-name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 .product-price { color: #fff; font-size: 18px; font-weight: 700; margin-top: 4px; }
 
 /* --- BARRA DE ACCIONES (CANTIDAD + COMPRAR) --- */
@@ -98,6 +116,17 @@
 }
 
 .btn-buy:hover { opacity: 0.9; }
+
+/* COMPRAR como enlace (va a detalle) */
+.product-card .product-actions-bar .btn-buy--link {
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
 
 .product-link-wrapper {
   text-decoration: none;

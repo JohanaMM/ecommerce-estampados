@@ -28,13 +28,13 @@ module.exports = (sequelize, dataTypes) => {
     };
     let config = {
         timestamps: false,
-        underscore: true
+        underscored: true
     };
 
     const Brand = sequelize.define(alias, columns, config);
     Brand.associate = function(models){
         Brand.hasMany(models.Product, {
-            foreingKey: "brand_id"
+            foreignKey: "brand_id"
         })
     }
     return Brand

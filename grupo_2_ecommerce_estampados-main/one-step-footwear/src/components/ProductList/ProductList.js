@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import "./ProductList.css";
 import ProductCard from "../ProductCard/ProductCard";
 import { CartContext } from "../../context/CartContext";
+import { API_PRODUCTS } from "../../config";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ function ProductList() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/products", {
+        const response = await fetch(API_PRODUCTS, {
           method: "GET",
           headers: {
             "Accept": "application/json",

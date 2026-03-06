@@ -1,55 +1,51 @@
 import { useState } from "react";
 import { FaShoppingCart, FaPlus, FaMinus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { IMG_BASE_URL } from "../../config";
 import "./ProductCard.css";
 
 function ProductCard({ product, addToCart }) {
-  const [quantity, setQuantity] = useState(1);
-
-  const handleQty = (e, diff) => {
-    e.preventDefault(); // Evita que el clic dispare el Link
-    const newQty = Math.max(1, quantity + diff);
-    setQuantity(newQty);
+  const location = useLocation();
+  const [localQty, setLocalQty] = useState(1);
+  const imageSrc = product.isCustom ? product.img : `${IMG_BASE_URL}/${product.img}`;
+  const productLink = `/product-details/${product.id}`;
+  const fromListState = {
+    fromList: location.pathname + location.search,
+    quantity: localQty,
   };
 
-  const imageSrc = product.isCustom ? product.img : `http://localhost:3000/img/${product.img}`;
+  const handleQty = (e, diff) => {
+    e.preventDefault();
+    setLocalQty((prev) => Math.max(1, prev + diff));
+  };
 
   return (
     <div className="product-card">
       {product.isCustom && <div className="product-badge">Custom</div>}
-      
-      {/* Parte superior: Imagen y Datos (Clickable al detalle) */}
-      <Link to={`/product-details/${product.id}`} className="product-link-wrapper">
+      <Link to={productLink} className="product-link-wrapper">
         <div className="product-img-wrapper">
           <img src={imageSrc} alt={product.name} loading="lazy" />
         </div>
-
         <div className="product-info-body">
           <span className="product-brand">{product.brand}</span>
           <h3 className="product-name">{product.name}</h3>
-          <span className="product-price">${product.price.toLocaleString()}</span>
+          <span className="product-price">${Number(product.price).toLocaleString()}</span>
         </div>
       </Link>
-
-      {/* Fila Inferior: Selector de cantidad y Botón Comprar */}
       <div className="product-actions-bar">
         <div className="qty-selector">
-          <button type="button" className="qty-btn" onClick={(e) => handleQty(e, -1)}>
+          <button type="button" className="qty-btn" onClick={(e) => handleQty(e, -1)} aria-label="Menos">
             <FaMinus size={10} />
           </button>
-          <span className="qty-number">{quantity}</span>
-          <button type="button" className="qty-btn" onClick={(e) => handleQty(e, 1)}>
+          <span className="qty-number">{localQty}</span>
+          <button type="button" className="qty-btn" onClick={(e) => handleQty(e, 1)} aria-label="Más">
             <FaPlus size={10} />
           </button>
         </div>
-
-        <button 
-          className="btn-buy" 
-          onClick={() => addToCart({ ...product, quantity })}
-        >
+        <Link to={productLink} state={fromListState} className="btn-buy btn-buy--link">
           <FaShoppingCart size={14} />
           <span>COMPRAR</span>
-        </button>
+        </Link>
       </div>
     </div>
   );

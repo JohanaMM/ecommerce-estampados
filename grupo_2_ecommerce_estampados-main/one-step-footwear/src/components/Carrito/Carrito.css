@@ -14,6 +14,18 @@
   padding-bottom: 10px;
 }
 
+.cart-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cart-count {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .cart-container {
   display: grid;
   grid-template-columns: 1fr 300px; /* Lista a la izquierda, resumen a la derecha */
@@ -29,6 +41,7 @@
 .cart-items-list {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
 .cart-summary {
@@ -36,6 +49,13 @@
   padding: 20px;
   border-radius: 12px;
   border: 1px solid #333;
+}
+
+.cart-summary h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
 }
 
 .summary-row {
@@ -60,6 +80,12 @@
   border: none;
   border-radius: 8px;
   font-weight: 800;
+  font-size: 12px;
   cursor: pointer;
   text-transform: uppercase;
+  transition: opacity 0.2s;
+}
+
+.btn-checkout:hover:not(:disabled) {
+  opacity: 0.9;
 }

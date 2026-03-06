@@ -23,13 +23,13 @@ module.exports = (sequelize, dataTypes) => {
     };
     let config = {
         timestamps: false,
-        underscore: true
+        underscored: true
     };
 
     const Genre = sequelize.define(alias, columns, config);
     Genre.associate = function(models){
         Genre.hasMany(models.Product, {
-            foreingKey: "genre_id"
+            foreignKey: "genre_id"
         })
     }
     return Genre;

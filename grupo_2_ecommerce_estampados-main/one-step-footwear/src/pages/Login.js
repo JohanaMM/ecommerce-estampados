@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom"; // Añadimos useLocation
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { API_USERS } from "../config";
 import "./login.css";
 
 function Login() {
@@ -16,7 +17,7 @@ function Login() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:3000/api/users/login", {
+      const response = await fetch(`${API_USERS}/login`, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -38,9 +39,8 @@ function Login() {
         }
 
         // --- LÓGICA DE REDIRECCIÓN INTELIGENTE ---
-        // Si venimos de Personaliza (o cualquier otra página), location.state.from tendrá esa ruta.
         const from = location.state?.from || "/perfil";
-        navigate(from);
+        navigate(from, { state: location.state });
 
       } else {
         setError(data.message || "Credenciales inválidas");

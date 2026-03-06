@@ -55,12 +55,17 @@
 /* --- GRILLA DE PRODUCTOS (3 Columnas Web / 1 Móvil) --- */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas por defecto */
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   padding: 40px 80px;
-  justify-items: center;
+  justify-items: stretch;
+  align-items: start;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.product-grid > * {
+  min-width: 0;
 }
 
 .status-msg, .empty-msg {

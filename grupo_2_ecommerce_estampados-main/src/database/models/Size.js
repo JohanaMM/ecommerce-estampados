@@ -23,13 +23,13 @@ module.exports = (sequelize, dataTypes) => {
     };
     let config = {
         timestamps: false,
-        underscore: true
+        underscored: true
     };
 
     const Size = sequelize.define(alias, columns, config);
     Size.associate = function(models){
         Size.hasMany(models.Stock, {
-            foreingKey: "size_id"
+            foreignKey: "size_id"
         })
     }
     return Size;

@@ -11,6 +11,7 @@ import Carrito from './components/Carrito/Carrito';
 import Perfil from './components/Perfil/Perfil';
 import Login from './pages/Login';
 import Register from "./pages/Register";
+import { PaymentSuccess, PaymentFailure, PaymentPending } from './pages/PaymentResult';
 import { CartProvider } from './context/CartContext';
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton';
 import './App.css';
@@ -33,6 +34,9 @@ function App() {
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/success" element={<PaymentSuccess />} />
+            <Route path="/failure" element={<PaymentFailure />} />
+            <Route path="/pending" element={<PaymentPending />} />
             <Route path="*" element={<Error404/>} />
           </Routes>
         </main>
