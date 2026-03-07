@@ -5,7 +5,11 @@
   "main": "src/app.js",
   "scripts": {
     "test": "nodemon src/app.js",
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/app.js",
+    "db:agregar-direccion": "node scripts/agregar-columnas-direccion.js",
+    "db:agregar-shipping": "node scripts/agregar-shipping-status.js",
+    "db:agregar-product-images": "node scripts/agregar-product-images.js",
+    "db:agregar-theme": "node scripts/agregar-theme-productos.js"
   },
   "keywords": [],
   "author": "",

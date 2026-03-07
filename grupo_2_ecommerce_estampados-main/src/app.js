@@ -14,6 +14,8 @@ const contactRouter = require("./routers/contactRouter");
 const usersApiRouter = require("./routers/API/usersApiRouter");
 const productsApiRouter = require("./routers/API/productsApiRouter");
 const paymentsApiRouter = require("./routers/API/paymentsApiRouter");
+const shippingApiRouter = require("./routers/API/shippingApiRouter");
+const ordersApiRouter = require("./routers/API/ordersApiRouter");
 
 // Middlewares
 const remindMeCookie = require("./middlewares/remindMeCookie");
@@ -75,6 +77,8 @@ app.use("/", mainRouter);
 app.use("/api/users", usersApiRouter);
 app.use("/api/products", productsApiRouter);
 app.use("/api/payments", paymentsApiRouter);
+app.use("/api/shipping", shippingApiRouter);
+app.use("/api/orders", ordersApiRouter);
 app.use(contactRouter);
 
 // ==========================

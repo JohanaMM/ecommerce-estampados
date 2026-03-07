@@ -1,49 +1,99 @@
 const { Sequelize } = require("sequelize");
+const { Op } = require("sequelize");
 const db = require("../../database/models");
 const { Brand, Category, Genre, Product, Size, Stock } = db;
 
 const API_BASE_URL = process.env.API_URL || "http://localhost:3000";
 const urlApi = `${API_BASE_URL}/api/products`;
 const urlImg = `${API_BASE_URL}/img`;
-const LIMIT = 10;
+const LIMIT = 50;
 
 const productsApiController = {
   list: async (req, res) => {
     try {
       const page = Math.max(1, parseInt(req.query.page, 10) || 1);
-      const countProducts = await Product.count();
-      const totalPages = Math.ceil(countProducts / LIMIT);
+      const categoryName = (req.query.category || "").trim();
+      const theme = (req.query.theme || "").trim();
+      const q = (req.query.q || "").trim();
 
-      if (page > totalPages || page < 1) {
-        return res.status(404).json({
-          message: "404 Not Found",
-          status: 404
-        });
+      let where = { is_active: 1 };
+      const filterByCategory = categoryName && categoryName.toLowerCase() !== "todos";
+      const filterByTheme = theme && theme.toLowerCase() !== "todos";
+
+      const include = [
+        {
+          model: Category,
+          required: filterByCategory,
+          attributes: ["id", "name"],
+          ...(filterByCategory && { where: { name: { [Op.like]: `%${categoryName}%` } } })
+        },
+        { model: Brand, required: false, attributes: ["name"] }
+      ];
+
+      if (filterByTheme) {
+        const themeNorm = theme.charAt(0).toUpperCase() + theme.slice(1).toLowerCase();
+        if (themeNorm === "Música") {
+          where = { ...where, [Op.or]: [{ theme: { [Op.like]: "%Música%" } }, { theme: { [Op.like]: "%Bandas%" } }] };
+        } else {
+          where = { ...where, theme: { [Op.like]: `%${theme}%` } };
+        }
+      }
+      if (q) {
+        where = { ...where, [Op.or]: [{ name: { [Op.like]: `%${q}%` } }, { description: { [Op.like]: `%${q}%` } }] };
       }
 
-      const offset = (page - 1) * LIMIT;
-      const allProducts = await Product.findAll({
-        attributes: ["id", "name", "img", "price", "created_date"],
-        limit: LIMIT,
-        offset
+      let countProducts;
+      let allProducts;
+      const baseOpts = { where, include, limit: LIMIT, offset: (page - 1) * LIMIT };
+      try {
+        countProducts = await Product.count({ where, include });
+        allProducts = await Product.findAll({
+          ...baseOpts,
+          attributes: ["id", "name", "img", "price", "created_date", "theme"]
+        });
+      } catch (err) {
+        if (err.message && err.message.includes("Unknown column") && err.message.includes("theme")) {
+          where = { is_active: 1 };
+          if (q) where = { ...where, [Op.or]: [{ name: { [Op.like]: `%${q}%` } }, { description: { [Op.like]: `%${q}%` } }] };
+          countProducts = await Product.count({ where, include });
+          allProducts = await Product.findAll({
+            where,
+            include,
+            limit: LIMIT,
+            offset: (page - 1) * LIMIT,
+            attributes: ["id", "name", "img", "price", "created_date"]
+          });
+        } else {
+          throw err;
+        }
+      }
+
+      const totalPages = Math.ceil(countProducts / LIMIT) || 1;
+
+      const products = allProducts.map((element) => {
+        const row = { ...element.dataValues };
+        const cat = element.Category;
+        const brand = element.Brand;
+        row.category = cat ? cat.name : null;
+        row.brand = brand ? brand.name : null;
+        row.detail = `${urlApi}/${row.id}`;
+        delete row.Category;
+        delete row.Brand;
+        return row;
       });
 
-      const products = allProducts.map((element) => ({
-        ...element.dataValues,
-        detail: `${urlApi}/${element.dataValues.id}`
-      }));
-
       const countByCategoryRows = await Product.findAll({
-        attributes: [[Sequelize.fn("COUNT", Sequelize.col("Category.id")), "total"]],
+        attributes: [[Sequelize.fn("COUNT", Sequelize.col("Product.id")), "total"], "Category.name"],
         include: [
-          { model: Category, required: true, attributes: ["name"] }
+          { model: Category, required: false, attributes: ["name"] }
         ],
-        group: ["Category.id"]
+        where: { is_active: 1 },
+        group: ["Category.id", "Category.name"]
       });
 
       const countByCategory = Object.fromEntries(
         countByCategoryRows.map((row) => [
-          row.dataValues.Category.name,
+          (row.dataValues.Category && row.dataValues.Category.name) || "Sin categoría",
           row.dataValues.total
         ])
       );
@@ -69,7 +119,7 @@ const productsApiController = {
   detail: async (req, res) => {
     try {
       const { id } = req.params;
-      const oneProduct = await Product.findByPk(id, {
+      let oneProduct = await Product.findByPk(id, {
         attributes: ["id", "name", "description", "price", "img", "created_date"],
         include: [
           { model: Brand, required: true, attributes: ["name"] },
@@ -77,6 +127,15 @@ const productsApiController = {
           { model: Genre, required: true, attributes: ["name"] }
         ]
       });
+      let imagesJson = null;
+      if (oneProduct) {
+        try {
+          const withImages = await Product.findByPk(id, { attributes: ["images"] });
+          if (withImages && withImages.dataValues && withImages.dataValues.images != null) {
+            imagesJson = withImages.dataValues.images;
+          }
+        } catch (_) {}
+      }
 
       if (!oneProduct) {
         return res.status(404).json({
@@ -96,9 +155,20 @@ const productsApiController = {
         available_quantity: element.dataValues.available_quantity
       }));
 
+      const mainImg = `${urlImg}/${oneProduct.dataValues.img}`;
+      let images = [mainImg];
+      if (imagesJson) {
+        try {
+          const parsed = JSON.parse(imagesJson);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            images = parsed.map((path) => (path.startsWith("http") ? path : `${urlImg}/${path}`));
+          }
+        } catch (_) {}
+      }
       const product = {
         ...oneProduct.dataValues,
-        img: `${urlImg}/${oneProduct.dataValues.img}`,
+        img: mainImg,
+        images,
         Stock: stock,
         Brand: oneProduct.Brand.dataValues.name,
         Category: oneProduct.Category.dataValues.name,

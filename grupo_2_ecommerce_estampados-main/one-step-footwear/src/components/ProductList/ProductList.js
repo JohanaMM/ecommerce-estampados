@@ -1,73 +1,120 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
+import { useParams } from "react-router-dom";
 import "./ProductList.css";
 import ProductCard from "../ProductCard/ProductCard";
 import { CartContext } from "../../context/CartContext";
 import { API_PRODUCTS } from "../../config";
 
+const TEMAS = [
+  "Todos",
+  "Música",
+  "Equipos",
+  "Videojuegos",
+  "Series",
+  "Películas",
+  "Anime",
+  "Otros",
+];
+
+const SLUG_TO_CATEGORY = {
+  remeras: "Remeras",
+  buzos: "Buzos",
+  "pad-mouse": "Pad Mouse",
+  tazas: "Tazas",
+  termos: "Termos",
+};
+
+function slugToTitle(slug) {
+  if (!slug) return "Tienda";
+  return SLUG_TO_CATEGORY[slug] || slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, " ");
+}
+
 function ProductList() {
+  const { category: categorySlug } = useParams();
   const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("todos");
-  const [status, setStatus] = useState("Cargando productos... ⏳");
+  const [selectedTema, setSelectedTema] = useState("Todos");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [status, setStatus] = useState("Cargando productos...");
   const { addToCart } = useContext(CartContext);
 
+  const pageTitle = slugToTitle(categorySlug);
+  const categoryForApi = categorySlug ? (SLUG_TO_CATEGORY[categorySlug] || slugToTitle(categorySlug)) : null;
+
+  const fetchProducts = useCallback(async () => {
+    setStatus("Cargando productos...");
+    try {
+      const params = new URLSearchParams();
+      if (categoryForApi) params.set("category", categoryForApi);
+      if (selectedTema !== "Todos") params.set("theme", selectedTema);
+      if (searchQuery.trim()) params.set("q", searchQuery.trim());
+      const url = params.toString() ? `${API_PRODUCTS}?${params.toString()}` : API_PRODUCTS;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      if (!response.ok) throw new Error(`Error ${response.status}`);
+      const data = await response.json();
+      const finalProducts = data.products || data.data || data;
+      setProducts(Array.isArray(finalProducts) ? finalProducts : []);
+      setStatus("");
+    } catch (err) {
+      console.error("Error fetch productos:", err);
+      setStatus("Error cargando productos");
+    }
+  }, [categoryForApi, selectedTema, searchQuery]);
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(API_PRODUCTS, {
-          method: "GET",
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-          },
-          credentials: "include", 
-        });
-
-        if (!response.ok) throw new Error(`Error ${response.status}: No se pudo conectar`);
-        
-        const data = await response.json();
-        const finalProducts = data.products || data.data || data;
-        
-        setProducts(Array.isArray(finalProducts) ? finalProducts : []);
-        setStatus(""); 
-      } catch (err) {
-        console.error("Error fetch productos:", err);
-        setStatus("Error cargando productos ❌");
-      }
-    };
-
     fetchProducts();
-  }, []);
+  }, [fetchProducts]);
 
-  const categories = ["todos", "remeras", "buzos", "pad-mouse", "tazas", "termos"];
-
-  const filteredProducts = selectedCategory === "todos"
-    ? products
-    : products.filter(p => p.category === selectedCategory);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchQuery(searchInput);
+  };
 
   return (
     <main className="products-section">
-      <h1 className="section-title">Nuestra Colección</h1>
+      <h1 className="section-title">{pageTitle}</h1>
 
-      {/* Filtros de Categoría */}
-      <nav className="categories-filter">
-        {categories.map(cat => (
-          <button
-            key={cat}
-            className={`category-btn ${selectedCategory === cat ? "active" : ""}`}
-            onClick={() => setSelectedCategory(cat)}
-          >
-            {cat.charAt(0).toUpperCase() + cat.slice(1)}
-          </button>
-        ))}
-      </nav>
+      {/* Buscador */}
+      <form className="products-search" onSubmit={handleSearch}>
+        <input
+          type="search"
+          className="products-search-input"
+          placeholder="Buscar por nombre o descripción..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          aria-label="Buscar productos"
+        />
+        <button type="submit" className="products-search-btn">
+          Buscar
+        </button>
+      </form>
 
-      {/* Estado de carga */}
+      {/* Filtros por tema (categoría) - botones con nombre */}
+      <div className="filters-wrap">
+        <div className="filters-row" role="list">
+          {TEMAS.map((tema) => (
+            <button
+              key={tema}
+              type="button"
+              className={`filter-btn ${selectedTema === tema ? "active" : ""}`}
+              onClick={() => setSelectedTema(tema)}
+              role="listitem"
+            >
+              {tema}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {status && <div className="status-msg">{status}</div>}
 
-      {/* GRILLA DE PRODUCTOS: Aquí ocurre la magia del diseño */}
       <div className="product-grid">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(product => (
+        {!status && products.length > 0 ? (
+          products.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -77,7 +124,7 @@ function ProductList() {
         ) : (
           !status && (
             <div className="empty-state">
-              <p>No se encontraron productos en esta categoría.</p>
+              <p>No se encontraron productos con esos filtros.</p>
             </div>
           )
         )}

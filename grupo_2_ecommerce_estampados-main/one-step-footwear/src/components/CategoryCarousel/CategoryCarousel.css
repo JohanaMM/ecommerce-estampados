@@ -1,0 +1,105 @@
+.category-carousel-wrap {
+  padding: 48px 24px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.category-carousel-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.category-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-carousel-scroll {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 8px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-carousel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.category-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #252525;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+}
+
+.category-card-img {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+.category-card-name {
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+
+.category-carousel-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.category-carousel-btn:hover {
+  background: #FF0C0C;
+}
+
+@media (max-width: 768px) {
+  .category-carousel-wrap {
+    padding: 32px 16px;
+  }
+  .category-carousel-title {
+    font-size: 1.5rem;
+  }
+  .category-card {
+    flex: 0 0 220px;
+  }
+  .category-card-img {
+    height: 140px;
+  }
+  .category-carousel-btn {
+    width: 36px;
+    height: 36px;
+  }
+}

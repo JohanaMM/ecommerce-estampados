@@ -60,15 +60,121 @@
   border-radius: 20px;
   overflow: hidden;
   background: #222;
+}
+
+.product-detail-carousel-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.product-detail-carousel-frame {
+  position: relative;
+  width: 100%;
+}
+
+.product-detail-image-box.product-detail-carousel {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.product-detail-carousel-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  transition: transform 0.35s ease-out;
+}
+
+.product-detail-carousel-slide {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.product-detail-carousel-slide .product-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .product-detail-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.product-detail-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, opacity 0.2s;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.product-detail-carousel-btn svg {
+  display: block;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.product-detail-carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.product-detail-carousel-btn--prev {
+  left: 8px;
+}
+
+.product-detail-carousel-btn--next {
+  right: 8px;
+}
+
+.product-detail-carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-detail-carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.product-detail-carousel-dot:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.product-detail-carousel-dot.active {
+  background: #fff;
+  border-color: #fff;
 }
 
 .product-detail-info {

@@ -3,6 +3,17 @@ const router = express.Router();
 const { MercadoPagoConfig, Preference } = require("mercadopago");
 
 const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN;
+
+/** GET datos para pago por transferencia (CVU/CBU, alias, titular, banco, link WhatsApp) */
+router.get("/transfer-info", (req, res) => {
+  const cvu = (process.env.TRANSFER_CVU || process.env.TRANSFER_CBU || "").trim();
+  const alias = (process.env.TRANSFER_ALIAS || "").trim();
+  const titular = (process.env.TRANSFER_TITULAR || "").trim();
+  const banco = (process.env.TRANSFER_BANCO || "").trim();
+  const whatsappLink = (process.env.WHATSAPP_LINK || "").trim();
+  res.json({ cvu, alias, titular, banco, whatsappLink });
+});
+
 let preferenceClient = null;
 if (accessToken) {
   const client = new MercadoPagoConfig({ accessToken });

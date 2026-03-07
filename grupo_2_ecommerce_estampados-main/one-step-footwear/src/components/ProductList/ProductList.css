@@ -5,6 +5,12 @@
   padding-bottom: 50px;
 }
 
+.products-section {
+  background: #191919;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
 .section-title {
   font-size: 42px;
   font-family: 'Poppins', sans-serif;
@@ -16,40 +22,87 @@
   text-align: center;
 }
 
-/* Categorías estilo Instagram */
-.categories {
+/* Buscador */
+.products-search {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  padding: 20px 10px;
-  margin-bottom: 20px;
+  gap: 10px;
+  padding: 0 20px 24px;
+  max-width: 560px;
+  margin: 0 auto;
 }
 
-.category-btn {
-  flex: 0 0 auto;
-  padding: 8px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  background-color: #1f1f1f;
-  color: #b3b3b3;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+.products-search-input {
+  flex: 1;
+  padding: 12px 18px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  background: #1f1f1f;
+  color: #fff;
   font-size: 15px;
-  font-weight: 500;
 }
 
-.category-btn.active {
-  background-color: #FF0C0C; /* Rojo coherente con Login/Contacto */
-  color: white;
+.products-search-input::placeholder {
+  color: #666;
+}
+
+.products-search-input:focus {
+  outline: none;
   border-color: #FF0C0C;
-  box-shadow: 0 4px 12px rgba(255, 12, 12, 0.3);
 }
 
-.category-btn:hover:not(.active) {
-  background-color: #333;
-  color: white;
+.products-search-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: #FF0C0C;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.products-search-btn:hover {
+  background: #e00b0b;
+}
+
+/* --- Filtros por tema: botones con nombre --- */
+.filters-wrap {
+  padding: 16px 0 24px;
+  overflow: hidden;
+}
+
+.filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border: 1px solid #444;
+  border-radius: 24px;
+  background: #252525;
+  color: #ccc;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.filter-btn:hover {
+  background: #333;
+  border-color: #555;
+  color: #fff;
+}
+
+.filter-btn.active {
+  background: #FF0C0C;
+  border-color: #FF0C0C;
+  color: #fff;
 }
 
 /* --- GRILLA DE PRODUCTOS (3 Columnas Web / 1 Móvil) --- */
@@ -68,10 +121,22 @@
   min-width: 0;
 }
 
-.status-msg, .empty-msg {
+.status-msg {
+  text-align: center;
+  color: #aaa;
+  padding: 24px 20px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
   text-align: center;
   color: #888;
-  margin-top: 20px;
+  padding: 48px 20px;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 16px;
 }
 
 /* --- Responsive --- */
@@ -102,15 +167,15 @@
     padding: 20px;
   }
 
-  .category-btn {
-    padding: 6px 14px;
-    font-size: 14px;
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 480px) {
-  .category-btn {
-    padding: 5px 12px;
-    font-size: 13px;
+  .filter-btn {
+    padding: 6px 14px;
+    font-size: 12px;
   }
 }

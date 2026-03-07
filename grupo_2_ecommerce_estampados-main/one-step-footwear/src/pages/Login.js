@@ -27,7 +27,13 @@ function Login() {
         body: JSON.stringify({ email, password })
       });
 
-      const data = await response.json();
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (_) {
+        setError("La respuesta del servidor no es válida. ¿Está corriendo el backend?");
+        return;
+      }
 
       if (response.ok) {
         const userData = data.user || data.data || data;
@@ -48,7 +54,7 @@ function Login() {
 
     } catch (err) {
       console.error("Error en login:", err);
-      setError("Error de conexión con el servidor");
+      setError(err.message || "Error de conexión. Revisá que el backend esté en marcha (ej. puerto 3000).");
     }
   };
 

@@ -1,0 +1,320 @@
+.perfil-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%);
+  color: #fff;
+  padding-bottom: 60px;
+}
+
+.perfil-hero {
+  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  border-bottom: 1px solid #333;
+  padding: 32px 20px 28px;
+  text-align: center;
+}
+
+.perfil-hero h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.perfil-hero-email {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #888;
+}
+
+.perfil-loading,
+.perfil-hint {
+  max-width: 480px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+  color: #888;
+  text-align: center;
+}
+
+.perfil-card {
+  max-width: 640px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.perfil-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.perfil-card-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.perfil-btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.perfil-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.perfil-btn-edit {
+  background: #333;
+  color: #fff;
+}
+
+.perfil-btn-edit:hover:not(:disabled) {
+  background: #444;
+}
+
+.perfil-btn-cancel {
+  background: transparent;
+  color: #888;
+  border: 1px solid #444;
+}
+
+.perfil-btn-cancel:hover {
+  color: #fff;
+  border-color: #666;
+}
+
+.perfil-btn-save {
+  background: #FF0C0C;
+  color: #fff;
+}
+
+.perfil-btn-save:hover:not(:disabled) {
+  background: #e00b0b;
+}
+
+.perfil-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.perfil-saved-ok {
+  margin: 0;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  color: #0a6b0a;
+  background: rgba(10, 107, 10, 0.12);
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.perfil-datos {
+  padding: 24px;
+}
+
+.perfil-block {
+  margin-bottom: 24px;
+}
+
+.perfil-block:last-child {
+  margin-bottom: 0;
+}
+
+.perfil-block h3 {
+  margin: 0 0 12px 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.perfil-dl {
+  margin: 0;
+  display: grid;
+  gap: 10px 20px;
+  grid-template-columns: 120px 1fr;
+}
+
+.perfil-dl dt {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.perfil-dl dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+}
+
+.perfil-form {
+  padding: 24px;
+}
+
+.perfil-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.perfil-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.perfil-field--full {
+  grid-column: 1 / -1;
+}
+
+.perfil-field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #888;
+}
+
+.perfil-field input,
+.perfil-field select {
+  padding: 10px 12px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #0d0d0d;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.perfil-field input:focus,
+.perfil-field select:focus {
+  outline: none;
+  border-color: #FF0C0C;
+}
+
+.perfil-field select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mis compras */
+.perfil-orders-card {
+  margin-top: 20px;
+}
+
+.perfil-orders-card > h2 {
+  margin: 0;
+  padding: 20px 24px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.perfil-orders-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.perfil-order-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.perfil-order-item:last-child {
+  border-bottom: none;
+}
+
+.perfil-order-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.perfil-order-id {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.perfil-order-date {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.perfil-order-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.perfil-order-total {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #FF0C0C;
+}
+
+.perfil-shipping-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.perfil-shipping--pendiente {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.perfil-shipping--enviado {
+  background: rgba(33, 150, 243, 0.2);
+  color: #2196f3;
+}
+
+.perfil-shipping--en_camino {
+  background: rgba(156, 39, 176, 0.2);
+  color: #ce93d8;
+}
+
+.perfil-shipping--entregado {
+  background: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+}
+
+.perfil-no-orders {
+  margin: 0;
+  padding: 24px;
+  color: #888;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .perfil-dl {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil-order-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

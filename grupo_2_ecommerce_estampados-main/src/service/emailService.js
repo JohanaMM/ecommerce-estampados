@@ -46,4 +46,27 @@ const sendContactEmail = async (name, email, phone, message) => {
   await transporter.sendMail(mailOptions);
 };
 
-module.exports = { sendContactEmail };
+const sendPasswordResetEmail = async (toEmail, userName, resetLink) => {
+  const transporter = createTransporter();
+  const mailOptions = {
+    from: `"Trazzo" <${process.env.EMAIL_USER}>`,
+    to: toEmail,
+    subject: "Restablecer tu contraseña - Trazzo",
+    html: `
+      <div style="font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 500px;">
+        <h2 style="color: #333;">Recupero de contraseña</h2>
+        <p>Hola ${userName || "usuario/a"},</p>
+        <p>Recibimos una solicitud para restablecer la contraseña de tu cuenta.</p>
+        <p>Hacé clic en el siguiente enlace para elegir una nueva contraseña (válido por 1 hora):</p>
+        <p style="margin: 24px 0;">
+          <a href="${resetLink}" style="display: inline-block; padding: 12px 24px; background: #FF0C0C; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600;">Restablecer contraseña</a>
+        </p>
+        <p style="font-size: 13px; color: #666;">Si no solicitaste este correo, podés ignorarlo. Tu contraseña no se cambiará.</p>
+        <p style="font-size: 12px; color: #999; margin-top: 24px;">Trazzo - Estampados y personalización.</p>
+      </div>
+    `
+  };
+  await transporter.sendMail(mailOptions);
+};
+
+module.exports = { sendContactEmail, sendPasswordResetEmail };

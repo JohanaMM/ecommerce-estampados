@@ -27,6 +27,10 @@ module.exports = (sequelize, dataTypes) => {
         },
         modified_date: {
             type: dataTypes.DATE,
+        },
+        shipping_status: {
+            type: dataTypes.STRING(30),
+            allowNull: true,
         }
     };
     let config = {

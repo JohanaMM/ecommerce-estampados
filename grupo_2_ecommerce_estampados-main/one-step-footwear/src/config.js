@@ -8,6 +8,8 @@ export const API_BASE_URL =
 export const API_PRODUCTS = `${API_BASE_URL}/api/products`;
 export const API_USERS = `${API_BASE_URL}/api/users`;
 export const API_PAYMENTS = `${API_BASE_URL}/api/payments`;
+export const API_SHIPPING = `${API_BASE_URL}/api/shipping`;
+export const API_ORDERS = `${API_BASE_URL}/api/orders`;
 export const API_CONTACT = `${API_BASE_URL}/api/contact`;
 export const IMG_BASE_URL = `${API_BASE_URL}/img`;
 

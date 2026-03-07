@@ -1,0 +1,14 @@
+.home-page {
+  padding: 0;
+  min-height: 100%;
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+.home-page .banner-carousel {
+  margin-bottom: 0;
+}
+
+.home-page .category-products-carousel:first-of-type {
+  margin-top: 56px;
+}

@@ -11,18 +11,22 @@ import Carrito from './components/Carrito/Carrito';
 import Perfil from './components/Perfil/Perfil';
 import Login from './pages/Login';
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import { PaymentSuccess, PaymentFailure, PaymentPending } from './pages/PaymentResult';
 import { CartProvider } from './context/CartContext';
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 function App() {
   return (
     <CartProvider>
       <BrowserRouter>
-        <Header />
-        <main className="main-content">
-          <Routes>
+        <div className="app-layout">
+          <Header />
+          <main className="main-content">
+            <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/product-list" element={<ProductList/>} />
             {/* RUTA CORREGIDA CON / AL INICIO */}
@@ -34,12 +38,16 @@ function App() {
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/success" element={<PaymentSuccess />} />
             <Route path="/failure" element={<PaymentFailure />} />
             <Route path="/pending" element={<PaymentPending />} />
             <Route path="*" element={<Error404/>} />
           </Routes>
-        </main>
+          </main>
+          <Footer />
+        </div>
         <WhatsAppButton />
       </BrowserRouter>
     </CartProvider>

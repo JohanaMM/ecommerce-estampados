@@ -24,6 +24,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(100),
             allowNull: false
         },
+        images: {
+            type: dataTypes.TEXT,
+            allowNull: true
+        },
         is_active: {
             type: dataTypes.INTEGER(11),
             allowNull: false
@@ -38,6 +42,10 @@ module.exports = (sequelize, dataTypes) => {
         },
         genre_id:{
             type: dataTypes.INTEGER(11),
+            allowNull: true
+        },
+        theme: {
+            type: dataTypes.STRING(60),
             allowNull: true
         },
         created_date: {

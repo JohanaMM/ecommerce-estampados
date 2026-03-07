@@ -28,6 +28,34 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(100),
             allowNull: false,
         },
+        phone: {
+            type: dataTypes.STRING(30),
+            allowNull: true,
+        },
+        address_street: {
+            type: dataTypes.STRING(200),
+            allowNull: true,
+        },
+        address_number: {
+            type: dataTypes.STRING(20),
+            allowNull: true,
+        },
+        address_depto: {
+            type: dataTypes.STRING(50),
+            allowNull: true,
+        },
+        address_province: {
+            type: dataTypes.STRING(100),
+            allowNull: true,
+        },
+        address_city: {
+            type: dataTypes.STRING(100),
+            allowNull: true,
+        },
+        address_postal_code: {
+            type: dataTypes.STRING(20),
+            allowNull: true,
+        },
         role_id: {
             type: dataTypes.INTEGER(11),
             allowNull: false,

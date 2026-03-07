@@ -7,7 +7,12 @@ import "./ProductCard.css";
 function ProductCard({ product, addToCart }) {
   const location = useLocation();
   const [localQty, setLocalQty] = useState(1);
-  const imageSrc = product.isCustom ? product.img : `${IMG_BASE_URL}/${product.img}`;
+  const imageSrc =
+    product.isCustom
+      ? product.img
+      : product.img && (product.img.startsWith("http://") || product.img.startsWith("https://"))
+        ? product.img
+        : `${IMG_BASE_URL}/${product.img}`;
   const productLink = `/product-details/${product.id}`;
   const fromListState = {
     fromList: location.pathname + location.search,

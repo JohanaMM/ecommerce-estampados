@@ -1,0 +1,143 @@
+.banner-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+}
+
+.banner-track {
+  display: flex;
+  transition: transform 0.5s ease-out;
+}
+
+.banner-slide {
+  flex: 0 0 100%;
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 3rem;
+  text-align: left;
+  max-width: 520px;
+}
+
+.banner-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.5px;
+}
+
+.banner-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.9);
+  margin: 0 0 1.5rem 0;
+}
+
+.banner-cta {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #FF0C0C;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.banner-cta:hover {
+  background: #e00b0b;
+}
+
+.banner-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.2s;
+}
+
+.banner-btn:hover {
+  background: rgba(255,12,12,0.9);
+}
+
+.banner-btn--prev { left: 16px; }
+.banner-btn--next { right: 16px; }
+
+.banner-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.banner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.banner-dot:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+.banner-dot.active {
+  background: #FF0C0C;
+  border-color: #FF0C0C;
+}
+
+@media (max-width: 768px) {
+  .banner-slide {
+    min-height: 280px;
+  }
+  .banner-title {
+    font-size: 1.75rem;
+  }
+  .banner-content {
+    padding: 1.5rem 1.5rem;
+  }
+  .banner-btn {
+    width: 40px;
+    height: 40px;
+  }
+}

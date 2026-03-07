@@ -22,6 +22,7 @@ function ProductDetails() {
   const [validationError, setValidationError] = useState("");
   const [showAddedModal, setShowAddedModal] = useState(false);
   const [fromListUrl, setFromListUrl] = useState(location.state?.fromList || "/");
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   useEffect(() => {
     if (location.state?.fromList) setFromListUrl(location.state.fromList);
@@ -40,6 +41,10 @@ function ProductDetails() {
       .then((response) => response.json())
       .then((data) => setProductDetail(data))
       .catch((error) => console.log(error));
+  }, [id]);
+
+  useEffect(() => {
+    setCarouselIndex(0);
   }, [id]);
 
   useEffect(() => {
@@ -126,6 +131,17 @@ function ProductDetails() {
 
   if (!productDetail) return <p className="product-detail-loading">Cargando detalles...</p>;
 
+  const apiImages = Array.isArray(productDetail.images) && productDetail.images.length > 0
+    ? productDetail.images
+    : [productDetail.img];
+  const SIMULATED_SLIDES = 4;
+  const images = apiImages.length >= SIMULATED_SLIDES
+    ? apiImages
+    : Array.from({ length: SIMULATED_SLIDES }, (_, i) => apiImages[i % apiImages.length]);
+  const slideCount = images.length;
+  const goPrev = () => setCarouselIndex((i) => (i <= 0 ? slideCount - 1 : i - 1));
+  const goNext = () => setCarouselIndex((i) => (i >= slideCount - 1 ? 0 : i + 1));
+
   return (
     <div className="product-detail-wrapper">
       <div className="product-detail-container">
@@ -136,12 +152,59 @@ function ProductDetails() {
         </div>
 
         <div className="product-img-and-details">
-          <div className="product-detail-image-box">
-            <img
-              className="product-detail-image"
-              src={productDetail.img}
-              alt={productDetail.name}
-            />
+          <div className="product-detail-carousel-wrap">
+            <div className="product-detail-carousel-frame">
+              <div className="product-detail-image-box product-detail-carousel">
+                <div
+                  className="product-detail-carousel-inner"
+                  style={{
+                    width: `${slideCount * 100}%`,
+                    transform: `translateX(-${(carouselIndex / slideCount) * 100}%)`,
+                  }}
+                >
+                  {images.map((src, idx) => (
+                    <div
+                      key={idx}
+                      className="product-detail-carousel-slide"
+                      style={{ flex: `0 0 ${100 / slideCount}%` }}
+                    >
+                      <img
+                        className="product-detail-image"
+                        src={src}
+                        alt={`${productDetail.name} - imagen ${idx + 1}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {slideCount > 1 && (
+                <>
+                  <button type="button" className="product-detail-carousel-btn product-detail-carousel-btn--prev" onClick={goPrev} aria-label="Foto anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                  </button>
+                  <button type="button" className="product-detail-carousel-btn product-detail-carousel-btn--next" onClick={goNext} aria-label="Siguiente foto">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </button>
+                </>
+              )}
+            </div>
+            {slideCount > 1 && (
+              <div className="product-detail-carousel-dots">
+                {images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`product-detail-carousel-dot ${idx === carouselIndex ? "active" : ""}`}
+                    onClick={() => setCarouselIndex(idx)}
+                    aria-label={`Ir a imagen ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="product-detail-info">

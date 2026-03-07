@@ -39,7 +39,7 @@ function Header() {
     window.location.href = "/";
   };
 
-  const isShopActive = location.pathname.includes('/products');
+  const isShopActive = location.pathname.includes('/products') || location.pathname === '/product-list';
 
   return (
     <header className={`main-header ${scrolled ? 'is-scrolled' : ''}`}>
@@ -61,6 +61,7 @@ function Header() {
             </div>
             
             <div className="nav-dropdown-list">
+              <NavLink to="/product-list" onClick={() => setMenuOpen(false)}>Todos</NavLink>
               <NavLink to="/products/remeras" onClick={() => setMenuOpen(false)}>Remeras</NavLink>
               <NavLink to="/products/buzos" onClick={() => setMenuOpen(false)}>Buzos</NavLink>
               <NavLink to="/products/pad-mouse" onClick={() => setMenuOpen(false)}>Pad Mouse</NavLink>

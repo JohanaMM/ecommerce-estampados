@@ -35,6 +35,7 @@
 }
 
 /* Inputs */
+.login-form input[type="text"],
 .login-form input[type="email"],
 .login-form input[type="password"] {
   padding: 14px;
@@ -44,6 +45,14 @@
   color: #d9d9d9;
   font-size: 14px;
   transition: all 0.3s ease;
+}
+
+.forgot-text {
+  color: #b3b3b3;
+  font-size: 14px;
+  text-align: center;
+  margin: -10px 0 20px 0;
+  line-height: 1.4;
 }
 
 .login-form input:focus {
