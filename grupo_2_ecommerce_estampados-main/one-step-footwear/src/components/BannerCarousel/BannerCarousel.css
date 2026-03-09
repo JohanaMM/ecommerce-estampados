@@ -77,54 +77,32 @@
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-  transition: background 0.2s;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.banner-btn svg {
+  flex-shrink: 0;
+  color: #fff;
+  fill: currentColor;
 }
 
 .banner-btn:hover {
-  background: rgba(255,12,12,0.9);
+  background: rgba(255, 12, 12, 0.9);
+  border-color: #FF0C0C;
+  color: #fff;
 }
 
 .banner-btn--prev { left: 16px; }
 .banner-btn--next { right: 16px; }
-
-.banner-dots {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 2;
-}
-
-.banner-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s;
-}
-
-.banner-dot:hover {
-  background: rgba(255,255,255,0.5);
-}
-
-.banner-dot.active {
-  background: #FF0C0C;
-  border-color: #FF0C0C;
-}
 
 @media (max-width: 768px) {
   .banner-slide {

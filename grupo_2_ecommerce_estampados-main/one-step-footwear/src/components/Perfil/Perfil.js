@@ -20,9 +20,11 @@ const localidadesForCiudad = (ciudad) => LOCALIDADES_POR_CIUDAD[ciudad] || [];
 
 const SHIPPING_LABELS = {
   pendiente: "Pendiente de envío",
+  preparando: "Preparando",
   enviado: "Enviado",
   en_camino: "En camino",
   entregado: "Entregado",
+  cancelado: "Cancelado",
 };
 
 function Perfil() {

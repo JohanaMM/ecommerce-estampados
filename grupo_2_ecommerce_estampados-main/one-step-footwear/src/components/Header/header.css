@@ -73,6 +73,19 @@
   gap: 10px;
 }
 
+.nav-admin-link {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+.nav-admin-link:hover {
+  color: #FF0C0C;
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .nav-user-pill {
   display: flex;
   align-items: center;

@@ -1,0 +1,58 @@
+.admin-orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.admin-orders-header h1 {
+  font-size: 1.5rem;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.admin-orders-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #bbb;
+  cursor: pointer;
+}
+
+.admin-orders-filter input {
+  cursor: pointer;
+}
+
+.admin-orders-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-orders-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+}
+
+.admin-orders-status-select {
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: #ddd;
+  font-size: 0.9rem;
+  min-width: 130px;
+  cursor: pointer;
+}
+
+.admin-orders-status-select:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.admin-orders-updating {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  color: #8a8;
+}

@@ -78,18 +78,6 @@ function BannerCarousel() {
       >
         <FaChevronRight size={24} />
       </button>
-
-      <div className="banner-dots">
-        {BANNERS.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            className={`banner-dot ${i === current ? "active" : ""}`}
-            onClick={() => goTo(i)}
-            aria-label={`Ir a slide ${i + 1}`}
-          />
-        ))}
-      </div>
     </section>
   );
 }

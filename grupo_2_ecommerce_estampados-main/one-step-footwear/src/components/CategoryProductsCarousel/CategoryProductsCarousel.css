@@ -54,35 +54,43 @@
   margin-top: auto;
 }
 
-/* Flechas grises discretas (como el ejemplo) */
+/* Flechas bien visibles */
 .category-products-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border: none;
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  background: #404040;
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
-  transition: background 0.2s;
+  z-index: 10;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.category-products-arrow svg {
+  flex-shrink: 0;
+  color: #fff;
+  fill: currentColor;
 }
 
 .category-products-arrow:hover {
-  background: #555;
+  background: rgba(255, 12, 12, 0.9);
+  border-color: #FF0C0C;
+  color: #fff;
 }
 
 .category-products-arrow--prev {
-  left: 12px;
+  left: 14px;
 }
 
 .category-products-arrow--next {
-  right: 12px;
+  right: 14px;
 }
 
 .category-products-scroll {
@@ -122,35 +130,6 @@
   padding: 40px 20px;
   color: #888;
   min-height: 320px;
-}
-
-/* Puntos de paginación debajo del carrusel */
-.category-products-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-  padding: 0;
-}
-
-.category-products-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
-  background: #555;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.category-products-dot:hover {
-  background: #777;
-}
-
-.category-products-dot.active {
-  background: #111;
-  transform: scale(1.25);
 }
 
 .category-products-ver-mas {

@@ -34,10 +34,14 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     let config = {
+        tableName: "orders",
         timestamps: false,
-        underscore: true
+        underscored: true
     };
 
     const Order = sequelize.define(alias, columns, config);
+    Order.associate = function (models) {
+        Order.belongsTo(models.User, { foreignKey: "user_id", as: "User" });
+    };
     return Order;
 }

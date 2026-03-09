@@ -120,11 +120,11 @@ const productsApiController = {
     try {
       const { id } = req.params;
       let oneProduct = await Product.findByPk(id, {
-        attributes: ["id", "name", "description", "price", "img", "created_date"],
+        attributes: ["id", "name", "description", "price", "img", "created_date", "theme"],
         include: [
-          { model: Brand, required: true, attributes: ["name"] },
-          { model: Category, required: true, attributes: ["name"] },
-          { model: Genre, required: true, attributes: ["name"] }
+          { model: Brand, required: false, attributes: ["name"] },
+          { model: Category, required: false, attributes: ["name"] },
+          { model: Genre, required: false, attributes: ["name"] }
         ]
       });
       let imagesJson = null;
@@ -170,9 +170,9 @@ const productsApiController = {
         img: mainImg,
         images,
         Stock: stock,
-        Brand: oneProduct.Brand.dataValues.name,
-        Category: oneProduct.Category.dataValues.name,
-        Genre: oneProduct.Genre.dataValues.name
+        Brand: oneProduct.Brand ? oneProduct.Brand.dataValues.name : null,
+        Category: oneProduct.Category ? oneProduct.Category.dataValues.name : null,
+        Genre: oneProduct.Genre ? oneProduct.Genre.dataValues.name : null
       };
 
       res.json(product);

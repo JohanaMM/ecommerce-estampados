@@ -80,6 +80,11 @@ function Header() {
           <div className="nav-auth">
             {user ? (
               <div className="nav-user-container">
+                {Number(user.role_id) === 1 && (
+                  <Link to="/admin" className="nav-admin-link" onClick={() => setMenuOpen(false)}>
+                    Admin
+                  </Link>
+                )}
                 <Link to="/perfil" className="nav-user-pill">
                   <FaUser size={12} />
                   <span>{user.first_name}</span>

@@ -9,7 +9,7 @@ module.exports = (sequelize, dataTypes) => {
 
         },
         size: {
-            type: dataTypes.INTEGER(11),
+            type: dataTypes.STRING(45),
             allowNull: false,
         },
         created_date: {
@@ -22,6 +22,7 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     let config = {
+        tableName: "sizes",
         timestamps: false,
         underscored: true
     };

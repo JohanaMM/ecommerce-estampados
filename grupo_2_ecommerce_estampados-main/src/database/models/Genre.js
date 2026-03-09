@@ -22,6 +22,7 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     let config = {
+        tableName: "genres",
         timestamps: false,
         underscored: true
     };

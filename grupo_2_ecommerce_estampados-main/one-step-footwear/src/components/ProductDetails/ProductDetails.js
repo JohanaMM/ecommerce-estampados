@@ -6,7 +6,7 @@ import { API_PRODUCTS } from "../../config";
 import "./ProductDetails.css";
 
 const PENDING_SELECTION_KEY = "pending_product_selection";
-const SIZES = ["S", "M", "L", "XL"];
+const SIZES = ["S", "M", "L", "XL", "XXL"];
 const COLORS = ["Negro", "Blanco", "Gris", "Azul", "Rojo"];
 
 function ProductDetails() {
@@ -192,19 +192,6 @@ function ProductDetails() {
                 </>
               )}
             </div>
-            {slideCount > 1 && (
-              <div className="product-detail-carousel-dots">
-                {images.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    className={`product-detail-carousel-dot ${idx === carouselIndex ? "active" : ""}`}
-                    onClick={() => setCarouselIndex(idx)}
-                    aria-label={`Ir a imagen ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            )}
           </div>
 
           <div className="product-detail-info">

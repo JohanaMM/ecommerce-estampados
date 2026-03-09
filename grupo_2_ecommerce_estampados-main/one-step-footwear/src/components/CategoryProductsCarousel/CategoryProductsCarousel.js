@@ -81,18 +81,6 @@ function CategoryProductsCarousel({ slug, name, image }) {
             </div>
           ))}
         </div>
-
-        <div className="category-products-dots">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`category-products-dot ${i === currentPage ? "active" : ""}`}
-              onClick={() => scrollToPage(i)}
-              aria-label={`Ir a slide ${i + 1}`}
-            />
-          ))}
-        </div>
       </div>
 
       <Link to={`/products/${slug}`} className="category-products-ver-mas">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
 import ProductList from './components/ProductList/ProductList';
@@ -17,6 +17,10 @@ import { PaymentSuccess, PaymentFailure, PaymentPending } from './pages/PaymentR
 import { CartProvider } from './context/CartContext';
 import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton';
 import Footer from './components/Footer/Footer';
+import AdminGuard from './components/AdminGuard';
+import AdminLayout from './components/AdminLayout/AdminLayout';
+import AdminProducts from './pages/admin/AdminProducts';
+import AdminOrders from './pages/admin/AdminOrders';
 import './App.css';
 
 function App() {
@@ -43,6 +47,11 @@ function App() {
             <Route path="/success" element={<PaymentSuccess />} />
             <Route path="/failure" element={<PaymentFailure />} />
             <Route path="/pending" element={<PaymentPending />} />
+            <Route path="/admin" element={<AdminGuard><AdminLayout /></AdminGuard>}>
+              <Route index element={<Navigate to="/admin/products" replace />} />
+              <Route path="products" element={<AdminProducts />} />
+              <Route path="orders" element={<AdminOrders />} />
+            </Route>
             <Route path="*" element={<Error404/>} />
           </Routes>
           </main>

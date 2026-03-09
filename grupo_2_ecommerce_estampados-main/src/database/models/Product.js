@@ -48,6 +48,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(60),
             allowNull: true
         },
+        color: {
+            type: dataTypes.STRING(60),
+            allowNull: true
+        },
         created_date: {
             type: dataTypes.DATE,
             defaultValue: dataTypes.NOW,
