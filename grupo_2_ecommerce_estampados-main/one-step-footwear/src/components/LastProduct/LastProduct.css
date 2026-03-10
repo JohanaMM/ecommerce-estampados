@@ -1,4 +1,7 @@
 .last-product-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     border-radius: 5px;
     margin-top: 5px;
 }

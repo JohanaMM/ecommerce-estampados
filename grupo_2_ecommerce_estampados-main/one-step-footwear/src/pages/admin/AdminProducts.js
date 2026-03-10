@@ -280,11 +280,12 @@ function AdminProducts() {
                 />
               </label>
               <label>
-                Descripción *
+                Descripción * (podés usar viñetas: • o - al inicio de cada línea)
                 <textarea
                   value={form.description}
                   onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
-                  rows={3}
+                  rows={6}
+                  placeholder={"Ejemplo:\n• Característica 1\n• Característica 2\n- Otra línea"}
                   required
                 />
               </label>

@@ -74,7 +74,7 @@ const createProduct = async (req, res) => {
 
     const payload = {
       name,
-      description: description.slice(0, 100),
+      description,
       price: price || 0,
       img: imageName,
       images: imagesJson,
